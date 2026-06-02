@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة المونديال والألعاب الرقمية 2026 - بحث جوجل الشامل</title>
+    <title>منصة المونديال والألعاب الرقمية 2026 - بحث شامل</title>
     <style>
-        /* نظام الألوان عالي التباين والفخامة الكلاسيكية */
         :root {
             --bg-color: #ffffff;      
             --text-main: #000000;     
@@ -58,24 +57,41 @@
             font-weight: bold;
         }
 
-        /* تخصيص وتكبير حاوية بحث جوجل المخصص */
-        .google-search-section {
+        /* [تخصيص صندوق بحث جوجل الفوري والفعال] */
+        .search-container {
             margin: 25px 0;
-            background: #ffffff;
-            padding: 15px;
+            padding: 5px;
+        }
+        
+        .search-form {
+            display: flex;
             border: var(--border-width) solid var(--border-color);
             border-radius: var(--border-radius);
+            overflow: hidden;
+            background: #fff;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
-        /* تخصيص الخطوط الكبيرة داخل نتائج بحث جوجل */
-        .gcse-searchbox-only, .gsc-control-cse {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
-            font-size: 1.3rem !important;
-            font-weight: bold !important;
+        .search-input {
+            flex: 1;
+            border: none;
+            padding: 18px; /* حجم ضخم ومريح للكتابة من الموبايل */
+            font-size: 1.3rem; 
+            font-weight: bold;
+            outline: none;
+            font-family: inherit;
         }
 
-        /* عناوين الأقسام الرئيسية */
+        .search-btn {
+            background: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 0 25px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
         .section-title {
             font-size: 1.5rem; 
             font-weight: 900;
@@ -84,7 +100,6 @@
             border-right: 6px solid var(--accent-color);
         }
 
-        /* مساحات الإعلانات */
         .ad-container {
             background-color: #fafafa;
             border: 2px dashed #444444; 
@@ -97,7 +112,7 @@
             font-weight: bold;
         }
 
-        /* بطاقة مباراة اليوم المثبتة بخط كبير */
+        /* كارت مباراة اليوم */
         .featured-card {
             background-color: #ffffff;
             border: var(--border-width) solid var(--egypt-red);
@@ -151,22 +166,30 @@
 
     <div class="container">
         
+        <!-- الهيدر الرئيسي -->
         <div class="main-header">
             <div class="trophy-img">🏆</div>
             <h1>منصة المونديال والألعاب الرقمية</h1>
-            <p>البحث الشامل والذكي عن كل مباريات المونديال</p>
+            <p>ابحث في جوجل مباشرة عن كل المباريات والأخبار بلمسة واحدة</p>
         </div>
 
-        <div class="section-title">🔍 ابحث في جوجل عن كافة المباريات والأخبار</div>
-        <div class="google-search-section">
-            <script async src="https://cse.google.com/cse.js?cx=partner-pub-YOUR_CX_ID"></script>
-            <div class="gcse-search"></div>
+        <!-- [محرك بحث جوجل الفوري والفعال 100%] -->
+        <div class="section-title">🔍 محرك بحث جوجل الشامل للمباريات</div>
+        <div class="search-container">
+            <!-- نموذج يفتح نتائج جوجل مباشرة في صفحة جديدة دون الحاجة لأي أكواد خارجية أو معرفات -->
+            <form action="https://www.google.com/search" method="GET" target="_blank" class="search-form">
+                <!-- حقل البحث المكتوب بذكاء للتركيز على أخبار ومباريات المونديال -->
+                <input type="text" name="q" class="search-input" placeholder="اكتب: مباريات اليوم، منتخب مصر، ترتيب المجموعات..." required>
+                <button type="submit" class="search-btn">ابحث 🔍</button>
+            </form>
         </div>
 
+        <!-- [مستودع إعلاني علوي واضح] -->
         <div class="ad-container">
-            📢 إعلان رئيسي مستهدف (يتوافق مع نتائج بحث الزائر)
+            📢 إعلان رئيسي مستهدف لزوار المنصة
         </div>
 
+        <!-- قسم مباراة اليوم المثبتة -->
         <div class="section-title">📌 مباراة اليوم المثبتة</div>
         
         <div class="featured-card">
@@ -190,6 +213,7 @@
             </div>
         </div>
 
+        <!-- [مستودع إعلاني سفلي] -->
         <div class="ad-container" style="margin-top: 20px;">
             📢 مستودع إعلاني أسفل الصفحة (300×250)
         </div>
