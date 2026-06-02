@@ -3,234 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة المونديال والألعاب الرقمية 2026 - أرباح فورية</title>
+    <title>Koora Gamers Hub</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+
     <style>
-        :root {
-            --bg-color: #ffffff;      
-            --text-main: #000000;     
-            --text-muted: #444444;    
-            --accent-color: #0056b3;  
-            --egypt-red: #d9534f;
-            
-            --border-width: 3px; 
-            --border-color: #000000;  
-            --border-radius: 12px;     
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        /* إعادة تعيين الأنماط الأساسية */
+        * {
             margin: 0;
-            padding: 15px;
-            line-height: 1.8; 
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
         }
 
-        .container {
-            max-width: 600px;
+        /* الثيم الملكي النيون - Royal Neon */
+        body {
+            background-color: #0d0e12; /* أسود عميق مائل للأزرق */
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* الهيدر (Header) */
+        header {
+            background: linear-gradient(145deg, #14161d, #0d0e12);
+            padding: 15px 20px;
+            border-bottom: 2px solid #00ff66; /* نيون أخضر فسفوري */
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 900;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #00e5ff; /* نيون أزرق */
+            text-shadow: 0 0 8px #00e5ff;
+        }
+
+        /* حاوية المحتوى الرئيسي */
+        main {
+            flex: 1;
+            padding: 20px;
+            max-width: 800px;
+            width: 100%;
             margin: 0 auto;
         }
 
-        .main-header {
+        /* كارت الترحيب البطل (Hero Section) */
+        .hero-card {
+            background: #161922;
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            border-radius: 12px;
+            padding: 25px;
             text-align: center;
-            padding: 20px 0;
-            margin-bottom: 15px;
-            border-bottom: var(--border-width) solid var(--border-color);
+            margin-bottom: 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
         }
 
-        .trophy-img {
-            font-size: 4.5rem;
-            display: inline-block;
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: #00ff66;
+        }
+
+        .hero-card h1 {
+            font-size: 24px;
+            color: #ffffff;
             margin-bottom: 10px;
         }
 
-        .main-header h1 {
-            margin: 0;
-            font-size: 2.2rem; 
-            font-weight: 900;
+        .hero-card p {
+            color: #b3b9c9;
+            font-size: 14px;
+            line-height: 1.6;
         }
 
-        .main-header p {
-            margin: 8px 0 0 0; 
-            color: var(--text-muted); 
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
-        /* صندوق البحث الفوري */
-        .search-container {
-            margin: 25px 0;
-            padding: 5px;
-        }
-        
-        .search-form {
-            display: flex;
-            border: var(--border-width) solid var(--border-color);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            background: #fff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        .search-input {
-            flex: 1;
-            border: none;
-            padding: 18px; 
-            font-size: 1.3rem; 
-            font-weight: bold;
-            outline: none;
-            font-family: inherit;
-        }
-
-        .search-btn {
-            background: #000000;
-            color: #ffffff;
-            border: none;
-            padding: 0 25px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
+        /* قسم حالتنا الافتراضية للمحتوى القادم */
         .section-title {
-            font-size: 1.5rem; 
-            font-weight: 900;
-            margin: 25px 0 15px 0;
-            padding-right: 10px;
-            border-right: 6px solid var(--accent-color);
-        }
-
-        /* [حاويات الإعلانات الفورية عالية الأرباح] */
-        .fast-ad-box {
-            background-color: #fffdec;
-            border: 3px dashed #ff0000; /* إطار أحمر متقطع لجلب انتباه العين والنقرات فوراً */
-            border-radius: var(--border-radius);
-            padding: 10px;
-            text-align: center;
-            margin: 20px 0;
-            min-height: 120px; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .ad-meta-label {
-            font-size: 0.85rem;
-            color: #d9534f;
-            font-weight: 900;
-            margin-bottom: 5px;
-        }
-
-        /* كارت مباراة اليوم */
-        .featured-card {
-            background-color: #ffffff;
-            border: var(--border-width) solid var(--egypt-red);
-            border-radius: var(--border-radius);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #e6e6e6;
-            padding-bottom: 10px;
+            font-size: 18px;
             margin-bottom: 15px;
-            font-size: 1.2rem;
-            font-weight: 800;
-        }
-
-        .match-row {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            font-size: 1.6rem; 
-            font-weight: 900;
-            margin: 15px 0;
+            gap: 10px;
+            color: #00e5ff;
         }
 
-        .score-box {
-            background: #000000;
-            color: #ffffff;
-            padding: 4px 16px;
-            border-radius: 6px;
-            font-size: 1.5rem;
-            font-weight: 900;
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to left, rgba(0, 229, 255, 0.5), transparent);
         }
 
-        .info-row {
-            display: flex;
-            margin: 10px 0;
-            font-size: 1.15rem; 
+        .placeholder-content {
+            background: #11131a;
+            border: 1px dashed #242936;
+            border-radius: 8px;
+            padding: 40px 20px;
+            text-align: center;
+            color: #626b7f;
+            font-size: 14px;
         }
 
-        .info-label { font-weight: 900; min-width: 120px; color: #000000; }
-        .info-value { color: #333333; font-weight: 700; }
-
-        .status-badge { font-weight: 900; font-size: 0.95rem; padding: 4px 10px; border-radius: 6px; background: var(--egypt-red); color: #fff; }
+        /* الفوتر (Footer) */
+        footer {
+            background: #090a0d;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #4f5666;
+            border-top: 1px solid #161922;
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        
-        <!-- الهيدر -->
-        <div class="main-header">
-            <div class="trophy-img">🏆</div>
-            <h1>منصة المونديال والألعاب الرقمية</h1>
-            <p>ابحث في جوجل مباشرة عن كل المباريات والأخبار بلمسة واحدة</p>
-        </div>
+    <header>
+        <div class="logo">Koora<span>Gamers</span></div>
+    </header>
 
-        <!-- 1. [مساحة الإعلان الفوري العلوي - عالي النقرات للزوار] -->
-        <div class="fast-ad-box">
-            <div class="ad-meta-label">🔥 إعلان رياضي عاجل 🔥</div>
-            <!-- امسح السطر التالي وضع مكانة كود الإعلان الفوري البانر (Native/Banner) -->
-            <p style="font-size: 1.2rem; font-weight: bold; margin: 0; color: #000;">[سيظهر هنا الإعلان الفوري الأول بمجرد وضع الكود]</p>
-        </div>
+    <main>
+        <section class="hero-card">
+            <h1>مرحباً بك في المحطة الأولى 🎮</h1>
+            <p>هنا نبني مجتمع محترفي ألعاب كرة القدم الرقمية. كود نظيف، أداء فائق السرعة، وتحكم كامل بدون قيود.</p>
+        </section>
 
-        <!-- [محرك البحث] -->
-        <div class="section-title">🔍 محرك بحث جوجل الشامل للمباريات</div>
-        <div class="search-container">
-            <form action="https://www.google.com/search" method="GET" target="_blank" class="search-form">
-                <input type="text" name="q" class="search-input" placeholder="اكتب: مباريات اليوم، منتخب مصر، ترتيب المجموعات..." required>
-                <button type="submit" class="search-btn">ابحث 🔍</button>
-            </form>
+        <h2 class="section-title">الأقسام والبطولات</h2>
+        <div class="placeholder-content">
+            الخطوة القادمة: إضافة هيكل الأقسام الذكي وجداول المباريات التفاعلية.
         </div>
+    </main>
 
-        <!-- قسم مباراة اليوم المثبتة -->
-        <div class="section-title">📌 مباراة اليوم المثبتة</div>
-        
-        <div class="featured-card">
-            <div class="card-header">
-                <span style="color: var(--egypt-red);">🏆 دور المجموعات - الجولة 1</span>
-                <span class="status-badge">مباراة اليوم</span>
-            </div>
-            <div class="match-row">
-                <div class="team" style="text-align: right;">🇪🇬 مصر</div>
-                <div class="score-box">-</div>
-                <div class="score-box">-</div>
-                <div class="team" style="text-align: left;">منافس المجموعة 🏳️</div>
-            </div>
-            <div class="info-row">
-                <span class="info-label">⏰ توقيت مصر:</span>
-                <span class="info-value" style="color: var(--egypt-red); font-weight: 900;">الساعة 10:00 مساءً (بتوقيت القاهرة)</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">📺 القنوات:</span>
-                <span class="info-value">beIN Sports المفتوحة / أون تايم سبورتس</span>
-            </div>
-        </div>
-
-        <!-- 2. [مساحة الإعلان الفوري السفلي - بمقاس كبير 300x250 للموبايل] -->
-        <div class="fast-ad-box" style="background-color: #fafafa; border-color: #000;">
-            <div class="ad-meta-label" style="color: #444;">إعلان المقال والمجموعات</div>
-            <!-- امسح السطر التالي وضع مكانة كود الإعلان الفوري الثاني -->
-            <p style="font-size: 1.2rem; font-weight: bold; margin: 0; color: #000;">[سيظهر هنا الإعلان الفوري الثاني بمجرد وضع الكود]</p>
-        </div>
-
-    </div>
+    <footer>
+        &copy; 2026 Koora Gamers Hub. تم التطوير بكل شغف.
+    </footer>
 
 </body>
 </html>
