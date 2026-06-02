@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة المونديال والجيمرز</title>
+    <style>
+        /* من هنا تقدر تتحكم في الألوان والإطارات بسهولة */
+        :root {
+            --bg-color: #ffffff;      /* الخلفية البيضاء */
+            --text-main: #000000;     /* النص بالأسود */
+            --text-muted: #555555;    /* النص الرمادي الفرعي */
+            --accent-color: #0056b3;  /* اللون الأزرق للمؤشرات */
+            
+            /* التحكم في الإطار */
+            --border-width: 2px;      /* سمك الإطار */
+            --border-color: #1a1a1a;  /* لون الإطار أسود */
+            --border-radius: 8px;     /* انحناء زوايا الإطار */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 15px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .main-header {
+            text-align: center;
+            padding: 15px 0;
+            margin-bottom: 15px;
+            border-bottom: var(--border-width) solid var(--border-color);
+        }
+
+        .main-header h1 {
+            margin: 0;
+            font-size: 1.6rem;
+            font-weight: 800;
+        }
+
+        /* مستودع إعلاني للتطبيق */
+        .ad-slot {
+            background-color: #f9f9f9;
+            border: 1px dashed #777; /* إطار منقط للإعلان */
+            border-radius: var(--border-radius);
+            padding: 10px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        /* صندوق العداد التنازلي */
+        .countdown-box {
+            background: #000000;
+            color: #ffffff;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            font-size: 1.3rem;
+            margin-top: 10px;
+        }
+        .time-part {
+            display: flex;
+            flex-direction: column;
+        }
+        .time-part span {
+            font-size: 0.75rem;
+            color: #ccc;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 20px 0 10px 0;
+            padding-right: 5px;
+            border-right: 4px solid var(--accent-color);
+        }
+
+        /* كارت المباراة مع التحكم في الإطار */
+        .match-card {
+            background-color: #ffffff;
+            border: var(--border-width) solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .match-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+        }
+
+        .tournament-tag {
+            font-weight: bold;
+            font-size: 0.85rem;
+            color: var(--accent-color);
+        }
+
+        .match-teams {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .vs {
+            font-size: 0.9rem;
+            background: #000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            font-size: 0.95rem;
+        }
+
+        .info-label {
+            font-weight: bold;
+            min-width: 110px;
+        }
+
+        .info-value {
+            color: var(--text-muted);
+        }
+
+        .live-badge {
+            color: #d9534f;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="main-header">
+            <h1>منصة المونديال والجيمرز</h1>
+            <p style="margin: 5px 0 0 0; color: var(--text-muted); font-size: 0.9rem;">الكل في مكان واحد</p>
+        </div>
+
+        <div class="ad-slot" id="top-banner-ad">
+            <span>مساحة إعلانية مخصصة (مستودع التطبيق الإعلاني)</span>
+        </div>
+
+        <div class="countdown-box">
+            <div>⏳ المتبقي على انطلاق كأس العالم 2026</div>
+            <div class="countdown-timer" id="timer">
+                <div class="time-part"><div id="days">00</div><span>يوم</span></div>
+                <div class="time-part"><div id="hours">00</div><span>ساعة</span></div>
+                <div class="time-part"><div id="minutes">00</div><span>دقيقة</span></div>
+                <div class="time-part"><div id="seconds">00</div><span>ثانية</span></div>
+            </div>
+        </div>
+
+        <div class="section-title">مباراة الافتتاح والمعلومات الصحيحة</div>
+
+        <div class="match-card">
+            <div class="match-header">
+                <span class="tournament-tag">🏆 المجموعة الأولى - الجولة 1</span>
+                <span class="live-badge">مباراة الافتتاح</span>
+            </div>
+            
+            <div class="match-teams">
+                <span>المكسيك 🇲🇽</span>
+                <span class="vs">ضد</span>
+                <span>جنوب إفريقيا 🇿🇦</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">📅 التاريخ الصحيح:</span>
+                <span class="info-value">الخميس، 11 يونيو 2026</span>
+            </div>
+            
+            <div class="info-row">
+                <span class="info-label">⏰ التوقيت الصحيح:</span>
+                <span class="info-value">سيتم ضبطه تلقائياً حسب دولتك فور اعتماده</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">📺 القنوات الناقلة:</span>
+                <span class="info-value">شبكة beIN Sports المفتوحة / وقنوات الكأس</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">📍 أين تذاع:</span>
+                <span class="info-value">ملعب أزتيكا الدولي (المكسيك)</span>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const countDownDate = new Date("June 11, 2026 00:00:00").getTime();
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("timer").innerHTML = "انطلقت البطولة الآن! ⚽🏆";
+            }
+        }, 1000);
+    </script>
+</body>
+          </html>
+          
