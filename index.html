@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة المونديال والألعاب الرقمية 2026</title>
     <style>
-        /* التحكم في الألوان والإطارات الكلاسيكية */
+        /* نظام الألوان عالي التباين والفخامة الكلاسيكية */
         :root {
             --bg-color: #ffffff;      
             --text-main: #000000;     
-            --text-muted: #555555;    
+            --text-muted: #444444;    
             --accent-color: #0056b3;  
-            --egypt-red: #d9534f; 
+            --egypt-red: #d9534f;
+            --success-green: #218838;
             
-            /* التحكم في الإطار */
-            --border-width: 2px;      
-            --border-color: #1a1a1a;  
-            --border-radius: 8px;     
+            --border-width: 3px; /* زيادة سمك الإطار لمزيد من الوضوح */
+            --border-color: #000000;  
+            --border-radius: 12px;     
         }
 
         body {
@@ -25,7 +25,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 15px;
-            line-height: 1.6;
+            line-height: 1.8; /* زيادة المسافة بين السطور لراحة العين */
         }
 
         .container {
@@ -35,227 +35,268 @@
 
         .main-header {
             text-align: center;
-            padding: 15px 0;
+            padding: 20px 0;
             margin-bottom: 15px;
             border-bottom: var(--border-width) solid var(--border-color);
         }
 
-        /* تنسيق صورة / أيقونة كأس العالم */
+        /* تكبير حجم صورة / أيقونة كأس العالم */
         .trophy-img {
-            font-size: 3.5rem;
-            margin-bottom: 5px;
+            font-size: 4.5rem;
             display: inline-block;
+            margin-bottom: 10px;
             animation: float 3s ease-in-out infinite;
         }
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+            50% { transform: translateY(-6px); }
         }
 
+        /* خط كبير وواضح جداً للهيدر */
         .main-header h1 {
             margin: 0;
-            font-size: 1.6rem;
-            font-weight: 800;
+            font-size: 2.2rem; 
+            font-weight: 900;
+            letter-spacing: -0.5px;
         }
 
-        /* أزرار التحكم والتنقل الشاملة */
-        .nav-controls {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
+        .main-header p {
+            margin: 8px 0 0 0; 
+            color: var(--text-muted); 
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* [صندوق محرك البحث المباشر بخط ضخم] */
+        .search-container {
+            margin: 20px 0;
             position: sticky;
             top: 0;
             background: #ffffff;
-            padding: 10px 0;
-            z-index: 100;
-            border-bottom: 1px solid #eeeeee;
+            padding: 15px 0;
+            z-index: 1000;
+            border-bottom: 2px solid #dddddd;
         }
-
-        .control-btn {
-            flex: 1;
-            background-color: #ffffff;
-            color: #000000;
+        
+        .search-wrapper {
+            display: flex;
             border: var(--border-width) solid var(--border-color);
             border-radius: var(--border-radius);
-            padding: 10px 5px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            cursor: pointer;
-            text-align: center;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
-        .control-btn.active {
-            background-color: #000000;
+        .search-input {
+            flex: 1;
+            border: none;
+            padding: 16px; /* زيادة الحشو ليكون صندوق البحث ضخماً ومريحاً */
+            font-size: 1.3rem; /* خط كبير جداً للكتابة */
+            font-weight: bold;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .search-btn {
+            background: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 0 25px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* أزرار الفلترة السريعة تحت محرك البحث */
+        .quick-tags {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 8px;
+        }
+        
+        .tag-btn {
+            background: #f8f9fa;
+            color: #000000;
+            border: 2px solid #000000;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 1.05rem; /* تكبير خط الأزرار */
+            cursor: pointer;
+            font-weight: 800;
+        }
+        
+        .tag-btn.active {
+            background: #000000;
             color: #ffffff;
         }
 
-        /* مساحات الإعلانات لزيادة الأرباح */
+        /* مساحات الإعلانات */
         .ad-container {
-            background-color: #f9f9f9;
-            border: 1px dashed #777777; 
+            background-color: #fafafa;
+            border: 2px dashed #444444; 
             border-radius: var(--border-radius);
-            padding: 12px;
+            padding: 15px;
             text-align: center;
-            font-size: 0.8rem;
+            font-size: 1.05rem;
             color: var(--text-muted);
             margin-bottom: 20px;
             font-weight: bold;
         }
 
-        /* صندوق العداد التنازلي للبطولة */
-        .countdown-box {
-            background: #000000;
-            color: #ffffff;
-            border-radius: var(--border-radius);
-            padding: 15px;
-            text-align: center;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-        .countdown-timer {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            font-size: 1.3rem;
-            margin-top: 10px;
-        }
-        .time-part { display: flex; flex-direction: column; }
-
+        /* عناوين الأقسام الرئيسية */
         .section-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin: 20px 0 10px 0;
-            padding-right: 5px;
-            border-right: 4px solid var(--accent-color);
+            font-size: 1.5rem; /* خط ضخم لعناوين الأقسام */
+            font-weight: 900;
+            margin: 25px 0 15px 0;
+            padding-right: 10px;
+            border-right: 6px solid var(--accent-color);
         }
 
-        /* بطاقات المحتوى */
-        .match-card {
+        /* بطاقات المحتوى الكبيرة والواضحة */
+        .searchable-card {
             background-color: #ffffff;
             border: var(--border-width) solid var(--border-color);
             border-radius: var(--border-radius);
-            padding: 15px;
+            padding: 20px;
             margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
         }
 
-        .match-header {
+        .card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #e0e0e0;
-            padding-bottom: 8px;
-            margin-bottom: 12px;
+            border-bottom: 2px solid #e6e6e6;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
         }
 
+        .card-header span {
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+
+        /* عرض أسماء الفرق والنتائج بخط كبير جداً وعريض */
         .match-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 1.2rem;
-            font-weight: bold;
+            font-size: 1.6rem; /* خط عريض جداً للفرق */
+            font-weight: 900;
             margin: 15px 0;
         }
 
         .team { width: 45%; }
+        
         .score-box {
-            background: #1a1a1a;
+            background: #000000;
             color: #ffffff;
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-size: 1.1rem;
+            padding: 4px 16px;
+            border-radius: 6px;
+            font-size: 1.5rem;
+            font-weight: 900;
         }
 
+        /* صفوف المعلومات الحيوية */
         .info-row {
             display: flex;
-            align-items: center;
-            margin: 8px 0;
-            font-size: 0.95rem;
+            align-items: flex-start;
+            margin: 10px 0;
+            font-size: 1.15rem; /* تكبير نصوص المواعيد والقنوات */
         }
 
-        .info-label { font-weight: bold; min-width: 110px; }
-        .info-value { color: var(--text-muted); }
+        .info-label { font-weight: 900; min-width: 120px; color: #000000; }
+        .info-value { color: #333333; font-weight: 700; }
 
-        /* صندوق الملخص الفني للمباريات المنتهية */
-        .summary-box {
-            background-color: #f9f9f9;
-            border-top: 1px solid #dcdcdc;
-            padding-top: 10px;
+        /* نصوص الملخصات الواضحة */
+        .summary-text {
+            background: #f9f9f9;
+            border-top: 2px solid #eeeeee;
+            padding-top: 12px;
             margin-top: 15px;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
+            color: #222222;
+            line-height: 1.8;
         }
-        .summary-title { font-weight: bold; color: #28a745; margin-bottom: 5px; }
-        .goals-list { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; font-style: italic; }
 
-        /* قسم التعليقات */
-        .comments-section {
-            border: var(--border-width) solid var(--border-color);
-            border-radius: var(--border-radius);
-            padding: 15px;
-            background: #ffffff;
-            margin-top: 20px;
-            margin-bottom: 20px;
+        /* رسالة عدم وجود نتائج */
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--egypt-red);
+            display: none;
         }
-        .comment-input-area { display: flex; gap: 10px; margin-bottom: 15px; }
-        .comment-input {
-            flex: 1; border: var(--border-width) solid var(--border-color);
-            border-radius: var(--border-radius); padding: 8px 12px; font-size: 0.95rem; outline: none;
-        }
-        .comment-submit {
-            background: #000000; color: #ffffff; border: none;
-            border-radius: var(--border-radius); padding: 0 15px; font-weight: bold; cursor: pointer;
-        }
-        .comments-list { max-height: 180px; overflow-y: auto; border-top: 1px solid #e0e0e0; padding-top: 10px; }
-        .single-comment { background: #f5f5f5; padding: 8px 12px; border-radius: 6px; margin-bottom: 8px; font-size: 0.9rem; }
-        .comment-meta { font-weight: bold; font-size: 0.8rem; margin-bottom: 3px; color: var(--accent-color); }
-        
-        .status-badge { font-weight: bold; font-size: 0.8rem; padding: 2px 6px; border-radius: 4px; }
+
+        /* شارات الحالة الواضحة */
+        .status-badge { font-weight: 900; font-size: 0.95rem; padding: 4px 10px; border-radius: 6px; }
         .status-badge.upcoming { background: #e0e0e0; color: #000; }
-        .status-badge.finished { background: #28a745; color: #fff; }
+        .status-badge.live { background: var(--egypt-red); color: #fff; }
+        .status-badge.finished { background: var(--success-green); color: #fff; }
     </style>
 </head>
 <body>
 
     <div class="container">
         
-        <!-- الهيدر الرئيسي مع صورة تعبيرية لكأس العالم المونديالي -->
         <div class="main-header">
             <div class="trophy-img">🏆</div>
             <h1>منصة المونديال والألعاب الرقمية</h1>
-            <p style="margin: 5px 0 0 0; color: var(--text-muted); font-size: 0.9rem;">مواعيد المباريات، المخلصات، والبطولات الرقمية</p>
+            <p>ابحث عن مباريات اليوم، الأخبار، والمجموعات مباشرة</p>
         </div>
 
-        <!-- [مستودع إعلاني علوي] -->
-        <div class="ad-container" id="ad-slot-top">
-            📢 مستودع إعلاني علوي (بانر رئيسي - 320×50)
-        </div>
-
-        <!-- أزرار التحكم الشاملة للجمهور -->
-        <div class="nav-controls">
-            <button class="control-btn active" onclick="filterGlobal('all')">عرض الكل</button>
-            <button class="control-btn" onclick="filterGlobal('schedule')">مواعيد المباريات</button>
-            <button class="control-btn" onclick="filterGlobal('results')">ملخصات المباريات</button>
-            <button class="control-btn" onclick="filterGlobal('comments')">نقاشات الجمهور</button>
-        </div>
-
-        <!-- العداد التنازلي للبطولة -->
-        <div class="countdown-box global-topic" data-category="schedule">
-            <div>⏳ المتبقي على انطلاق كأس العالم 2026</div>
-            <div class="countdown-timer" id="timer">
-                <div class="time-part"><div id="days">00</div><span>يوم</span></div>
-                <div class="time-part"><div id="hours">00</div><span>ساعة</span></div>
-                <div class="time-part"><div id="minutes">00</div><span>دقيقة</span></div>
-                <div class="time-part"><div id="seconds">00</div><span>ثانية</span></div>
+        <div class="search-container">
+            <div class="search-wrapper">
+                <input type="text" id="mainSearch" class="search-input" onkeyup="liveSearch()" placeholder="ابحث عن: مصر، مباريات اليوم، ملخص...">
+                <button class="search-btn">🔍</button>
+            </div>
+            
+            <div class="quick-tags">
+                <button class="tag-btn active" onclick="filterTag('all', this)">كل المعلومات</button>
+                <button class="tag-btn" onclick="filterTag('مصر', this)">🇪🇬 مباريات مصر</button>
+                <button class="tag-btn" onclick="filterTag('اليوم', this)">📅 مباريات اليوم</button>
+                <button class="tag-btn" onclick="filterTag('ملخص', this)">⚽ ملخصات وأهداف</button>
+                <button class="tag-btn" onclick="filterTag('المجموعة', this)">📊 المجموعات</button>
             </div>
         </div>
 
-        <!-- [أولاً: قسم مواعيد المباريات القادمة بتوقيت مصر] -->
-        <div class="global-topic" data-category="schedule">
-            <div class="section-title">📅 مواعيد المباريات القادمة (بتوقيت مصر)</div>
-            
-            <!-- مباراة الافتتاح -->
-            <div class="match-card">
-                <div class="match-header">
-                    <span style="font-weight: bold; color: var(--accent-color);">🏆 المجموعة الأولى - مباراة الافتتاح 1</span>
+        <div class="ad-container">
+            📢 إعلان رئيسي مستهدف (يتغير تلقائياً حسب بحث الزائر)
+        </div>
+
+        <div class="section-title" id="resultsTitle">📋 كل مواضيع المونديال الحالية</div>
+        
+        <div id="noResults" class="no-results">❌ عذراً، لا توجد نتائج تطابق بحثك. جرب كلمات أخرى مثل (مصر، افتتاح، ملخص).</div>
+
+        <div id="cardsFeed">
+
+            <div class="searchable-card" data-keywords="مصر مباراة اليوم الفراعنة مواعيد دور المجموعات التوقيت القاهرة">
+                <div class="card-header">
+                    <span style="font-weight: 900; color: var(--egypt-red);">🏆 دور المجموعات - الجولة 1</span>
+                    <span class="status-badge live">مباراة اليوم</span>
+                </div>
+                <div class="match-row">
+                    <div class="team" style="text-align: right;">🇪🇬 مصر</div>
+                    <div class="score-box">-</div>
+                    <div class="score-box">-</div>
+                    <div class="team" style="text-align: left;">منافس المجموعة 🏳️</div>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">⏰ توقيت مصر:</span>
+                    <span class="info-value" style="color: var(--egypt-red); font-weight: 900;">الساعة 10:00 مساءً (بتوقيت القاهرة)</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">📺 القنوات:</span>
+                    <span class="info-value">beIN Sports المفتوحة / أون تايم سبورتس</span>
+                </div>
+            </div>
+
+            <div class="searchable-card" data-keywords="المكسيك جنوب إفريقيا الافتتاح مواعيد جدول يونيو استاد أزتيكا">
+                <div class="card-header">
+                    <span style="font-weight: 900; color: var(--accent-color);">🏆 مباراة الافتتاح الرسمي 1</span>
                     <span class="status-badge upcoming">قريباً</span>
                 </div>
                 <div class="match-row">
@@ -265,29 +306,18 @@
                     <div class="team" style="text-align: left;">جنوب إفريقيا 🇿🇦</div>
                 </div>
                 <div class="info-row">
-                    <span class="info-label">⏰ موعد المباراة:</span>
-                    <span class="info-value" style="color: var(--egypt-red); font-weight: bold;">الخميس 11 يونيو - 11:00 مساءً</span>
+                    <span class="info-label">⏰ توقيت مصر:</span>
+                    <span class="info-value" style="font-weight: 900;">الخميس 11 يونيو - الساعة 11:00 مساءً</span>
                 </div>
                 <div class="info-row">
                     <span class="info-label">📍 الملعب:</span>
-                    <span class="info-value">استاد أزتيكا التاريخي - المكسيك</span>
+                    <span class="info-value">استاد أزتيكا التاريخي - مكسيكو سيتي</span>
                 </div>
             </div>
-        </div>
 
-        <!-- [مستودع إعلاني أوسط لزيادة الأرباح] -->
-        <div class="ad-container" id="ad-slot-middle">
-            📢 مستودع إعلاني مدمج (أعلى قسم الملخصات والنتائج)
-        </div>
-
-        <!-- [ثانياً: قسم ملخصات المباريات المنتهية] -->
-        <div class="global-topic" data-category="results">
-            <div class="section-title" style="border-right-color: #28a745;">⚽ ملخصات ونتائج المباريات المنتهية</div>
-            
-            <!-- نموذج مباراة منتهية مع مساحة الملخص الكامل -->
-            <div class="match-card" style="border-color: #28a745;">
-                <div class="match-header">
-                    <span style="font-weight: bold; color: #28a745;">🏆 مباراة ودية تحضيرية للمونديال</span>
+            <div class="searchable-card" data-keywords="ملخص أهداف مصر تونس مباراة منتهية نتيجة أهداف ودية">
+                <div class="card-header">
+                    <span style="font-weight: 900; color: var(--success-green);">⚽ ملخص مباراة منتهية (ودية تحضيرية)</span>
                     <span class="status-badge finished">انتهت</span>
                 </div>
                 <div class="match-row">
@@ -296,95 +326,75 @@
                     <div class="score-box">1</div>
                     <div class="team" style="text-align: left;">تونس 🇹🇳</div>
                 </div>
-                
-                <!-- قائمة الهدافين -->
-                <div class="goals-list">
-                    ⚽ الأهداف: مصطفى محمد ('24)، تريزيجيه ('78) / سيف الجزيري ('45)
+                <div class="info-row">
+                    <span class="info-label">⚽ الأهداف:</span>
+                    <span class="info-value" style="font-style: italic; color: var(--success-green);">مصطفى محمد ('24)، تريزيجيه ('78)</span>
                 </div>
-
-                <!-- صندوق الملخص -->
-                <div class="summary-box">
-                    <div class="summary-title">📝 ملخص المباراة الكامل:</div>
-                    <p style="margin: 0; color: var(--text-muted); line-height: 1.5;">
-                        شهد اللقاء حماساً كبيراً من الطرفين، حيث تقدم الفراعنة في الشوط الأول وضغطوا هجومياً من الأطراف. نجح المنتخب التونسي في إدراك التعادل قبل نهاية الشوط الأول، وفي الشوط الثاني أجرى المدرب تبديلات هجومية أثمرت عن اقتناص هدف الفوز القاتل عبر تسديدة قوية لتنتهي المباراة بفوز مصر وسط تشجيع جماهيري حاشد.
-                    </p>
+                <div class="summary-text">
+                    <strong>📝 ملخص اللقاء الكامل:</strong> فوز مثير للفراعنة بهدف قاتل في الدقائق الأخيرة بعد أداء تكتيكي وقوي في منتصف الملعب، مما يمنح الفريق دفعة معنوية هائلة قبل الانطلاق الرسمي للمونديال الكبير وسط فرحة الجماهير المصرية.
                 </div>
             </div>
+
+            <div class="searchable-card" data-keywords="المجموعات تصنيف ترتيب فيفا المجموعة الأولى الثانية">
+                <div class="card-header">
+                    <span style="font-weight: 900; color: #333;">📊 جدول ترتيب المجموعة الأولى (A)</span>
+                    <span class="status-badge upcoming">تحديث دوري</span>
+                </div>
+                <div style="font-size: 1.2rem; font-weight: 700; margin-top: 12px; line-height: 2;">
+                    1. 🇲🇽 المكسيك (0 نقاط)<br>
+                    2. 🇪🇬 مصر (0 نقاط)<br>
+                    3. 🇿🇦 جنوب إفريقيا (0 نقاط)<br>
+                    4. 🇨كا كندا (0 نقاط)
+                </div>
+            </div>
+
         </div>
 
-        <!-- [ثالثاً: قسم نقاشات وتعليقات الجمهور الحية] -->
-        <div class="comments-section global-topic" data-category="comments">
-            <div class="section-title" style="margin-top:0; border:none; padding:0;">💬 نقاشات وتحليلات الجمهور الحية</div>
-            
-            <div class="comment-input-area">
-                <input type="text" id="commentText" class="comment-input" placeholder="اكتب رأيك في ملخص المباراة أو توقع اللقاء القادم...">
-                <button class="comment-submit" onclick="addComment()">نشر</button>
-            </div>
-
-            <div class="comments-list" id="commentsList">
-                <div class="single-comment">
-                    <div class="comment-meta">كابتن كورة</div>
-                    <div>ملخص ممتاز جداً ومبروك لمنتخبنا الفوز التحضيري، الأداء يطمن قبل المونديال!</div>
-                </div>
-                <div class="single-comment">
-                    <div class="comment-meta">مشجع واعي</div>
-                    <div>تنسيق مواعيد المباريات بتوقيت مصر مريح جداً وبدقة عالية، تسلم إيديك.</div>
-                </div>
-            </div>
+        <div class="ad-container" style="margin-top: 20px;">
+            📢 مستودع إعلاني أسفل التغذية الإخبارية (300×250)
         </div>
 
     </div>
 
     <script>
-        // العداد التنازلي للبطولة (11 يونيو 2026)
-        const countDownDate = new Date("June 11, 2026 00:00:00").getTime();
-        const x = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = countDownDate - now;
+        // آليّة محرك البحث الفوري والمباشر (Live Search)
+        function liveSearch() {
+            const searchQuery = document.getElementById('mainSearch').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.searchable-card');
+            const noResults = document.getElementById('noResults');
+            let hasResults = false;
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            cards.forEach(card => {
+                const keywords = card.getAttribute('data-keywords').toLowerCase();
+                
+                if (keywords.includes(searchQuery)) {
+                    card.style.display = 'block';
+                    hasResults = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
 
-            document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
-
-            if (distance < 0) { clearInterval(x); document.getElementById("timer").innerHTML = "انطلقت البطولة رسمياً! ⚽🏆"; }
-        }, 1000);
-
-        // إضافة تعليق بشكل حي في القائمة
-        function addComment() {
-            const input = document.getElementById('commentText');
-            const commentValue = input.value.trim();
-            
-            if (commentValue !== "") {
-                const list = document.getElementById('commentsList');
-                const newComment = document.createElement('div');
-                newComment.className = 'single-comment';
-                newComment.innerHTML = `<div class="comment-meta">مستخدم (أنت)</div><div>${commentValue}</div>`;
-                list.insertBefore(newComment, list.firstChild);
-                input.value = "";
+            if (hasResults) {
+                noResults.style.display = 'none';
+            } else {
+                noResults.style.display = 'block';
             }
         }
 
-        // نظام الفلترة الذكي الشامل لكل مواضيع الصفحة الرئيسية
-        function filterGlobal(category) {
-            const buttons = document.querySelectorAll('.control-btn');
+        // تشغيل أزرار الوسوم (Quick Tags) للفلترة الفورية
+        function filterTag(tag, element) {
+            const buttons = document.querySelectorAll('.tag-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+            element.classList.add('active');
 
-            const topics = document.querySelectorAll('.global-topic');
-            topics.forEach(topic => {
-                const cats = topic.getAttribute('data-category').split(' ');
-                if (category === 'all' || cats.includes(category)) {
-                    topic.style.display = 'block';
-                } else {
-                    topic.style.display = 'none';
-                }
-            });
+            const searchInput = document.getElementById('mainSearch');
+            if (tag === 'all') {
+                searchInput.value = '';
+            } else {
+                searchInput.value = tag;
+            }
+            liveSearch();
         }
     </script>
 </body>
