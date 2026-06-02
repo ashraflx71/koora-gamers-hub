@@ -1,4 +1,3 @@
-          
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -12,7 +11,6 @@
             --text-main: #000000;     
             --text-muted: #555555;    
             --accent-color: #0056b3;  
-            --success-color: #28a745; /* لون الأخضر للنتائج */
             
             /* التحكم في الإطار */
             --border-width: 2px;      
@@ -72,7 +70,7 @@
             color: #ffffff;
         }
 
-        /* أماكن ومستودعات الإعلانات */
+        /* مستودعات الإعلانات */
         .ad-container {
             background-color: #f9f9f9;
             border: 1px dashed #777777; 
@@ -106,10 +104,6 @@
             display: flex;
             flex-direction: column;
         }
-        .time-part span {
-            font-size: 0.75rem;
-            color: #ccc;
-        }
 
         .section-title {
             font-size: 1.2rem;
@@ -119,7 +113,7 @@
             border-right: 4px solid var(--accent-color);
         }
 
-        /* جدول وبطاقات المباريات والنتائج */
+        /* بطاقة المباراة والنتائج */
         .match-card {
             background-color: #ffffff;
             border: var(--border-width) solid var(--border-color);
@@ -137,13 +131,6 @@
             margin-bottom: 12px;
         }
 
-        .tournament-tag {
-            font-weight: bold;
-            font-size: 0.85rem;
-            color: var(--accent-color);
-        }
-
-        /* تصميم صف النتيجة والفرق */
         .match-row {
             display: flex;
             justify-content: space-between;
@@ -153,78 +140,99 @@
             margin: 15px 0;
         }
 
-        .team {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            width: 40%;
-        }
-        .team.left { justify-content: flex-start; }
-        .team.right { justify-content: flex-end; }
-
-        /* صندوق النتيجة */
+        .team { width: 40%; }
         .score-box {
             background: #1a1a1a;
             color: #ffffff;
             padding: 4px 12px;
             border-radius: 4px;
             font-size: 1.1rem;
-            min-width: 40px;
-            text-align: center;
         }
 
-        .info-row {
-            display: flex;
-            align-items: center;
-            margin: 8px 0;
-            font-size: 0.95rem;
+        /* قسم التحليلات الفنية */
+        .analysis-box {
+            background-color: #fcfcfc;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 10px;
+            margin-top: 15px;
+            font-size: 0.9rem;
         }
-
-        .info-label {
+        .analysis-title {
             font-weight: bold;
-            min-width: 110px;
+            color: var(--accent-color);
+            margin-bottom: 5px;
         }
 
-        .info-value {
-            color: var(--text-muted);
+        /* قسم التعليقات */
+        .comments-section {
+            border: var(--border-width) solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            background: #ffffff;
+            margin-top: 20px;
         }
-
-        .status-badge {
+        .comment-input-area {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .comment-input {
+            flex: 1;
+            border: var(--border-width) solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 8px 12px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+        .comment-submit {
+            background: #000000;
+            color: #ffffff;
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 0 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .comments-list {
+            max-height: 200px;
+            overflow-y: auto;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 10px;
+        }
+        .single-comment {
+            background: #f5f5f5;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        .comment-meta {
             font-weight: bold;
             font-size: 0.8rem;
-            padding: 2px 6px;
-            border-radius: 4px;
+            margin-bottom: 3px;
+            color: var(--accent-color);
         }
-        .status-badge.upcoming { background: #e0e0e0; color: #000; }
-        .status-badge.live { background: #d9534f; color: #fff; animation: blink 1.5s infinite; }
-        .status-badge.finished { background: #28a745; color: #fff; }
-
-        @keyframes blink { 50% { opacity: 0.5; } }
     </style>
 </head>
 <body>
 
     <div class="container">
         
-        <!-- الهيدر -->
         <div class="main-header">
             <h1>منصة المونديال والجيمرز</h1>
-            <p style="margin: 5px 0 0 0; color: var(--text-muted); font-size: 0.9rem;">جدول المباريات والنتائج المباشرة</p>
+            <p style="margin: 5px 0 0 0; color: var(--text-muted); font-size: 0.9rem;">التحليلات والنقاشات الحية</p>
         </div>
 
-        <!-- [مستودع إعلاني علوي] -->
         <div class="ad-container" id="ad-slot-top">
             📢 مستودع إعلاني علوي (بانر رئيسي - 320×50)
         </div>
 
-        <!-- أزرار التحكم -->
         <div class="nav-controls">
             <button class="control-btn active" onclick="filterContent('all')">الكل</button>
-            <button class="control-btn" onclick="filterContent('matches')">جدول المباريات</button>
+            <button class="control-btn" onclick="filterContent('matches')">المباريات</button>
             <button class="control-btn" onclick="filterContent('gaming')">الألعاب</button>
         </div>
 
-        <!-- العداد التنازلي -->
         <div class="countdown-box">
             <div>⏳ المتبقي على انطلاق كأس العالم 2026</div>
             <div class="countdown-timer" id="timer">
@@ -235,90 +243,59 @@
             </div>
         </div>
 
-        <!-- قسم المباريات والنتائج -->
         <div id="matches-section" class="content-panel">
-            <div class="section-title">جدول مباريات المونديال والنتائج</div>
+            <div class="section-title">المباراة القادمة والتحليل الفني</div>
 
-            <!-- بطاقة مباراة 1 (مباراة الافتتاح) -->
             <div class="match-card">
                 <div class="match-header">
-                    <span class="tournament-tag">🏆 المجموعة الأولى - الجولة 1</span>
-                    <span class="status-badge upcoming">مباراة قادمة</span>
+                    <span style="font-weight: bold; color: var(--accent-color);">🏆 افتتاح كأس العالم - الجولة 1</span>
+                    <span style="background: #e0e0e0; padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">قريباً</span>
                 </div>
                 
-                <div class="match-row">
-                    <div class="team left">🇲🇽 المكسيك</div>
+                <div class="match-row" style="text-align: center;">
+                    <div class="team" style="text-align: right;">🇲🇽 المكسيك</div>
                     <div class="score-box">-</div>
                     <div class="score-box">-</div>
-                    <div class="team right">جنوب إفريقيا 🇿🇦</div>
+                    <div class="team" style="text-align: left;">جنوب إفريقيا 🇿🇦</div>
                 </div>
 
-                <div class="info-row">
-                    <span class="info-label">📅 التاريخ الصحيح:</span>
-                    <span class="info-value">الخميس، 11 يونيو 2026</span>
-                </div>
-                
-                <div class="info-row">
-                    <span class="info-label">⏰ التوقيت المحلي:</span>
-                    <span class="info-value">التوقيت يضبط تلقائياً حسب جدول الفيفا النهائي</span>
-                </div>
-
-                <div class="info-row">
-                    <span class="info-label">📺 القنوات الناقلة:</span>
-                    <span class="info-value">شبكة beIN Sports المفتوحة / قنوات الكأس</span>
-                </div>
-
-                <div class="info-row">
-                    <span class="info-label">📍 مكان الإذاعة:</span>
-                    <span class="info-value">ملعب أزتيكا الدولي (المكسيك)</span>
-                </div>
-            </div>
-
-            <!-- بطاقة مباراة 2 (مثال لمباراة منتهية أو تجريبية لعرض النتيجة) -->
-            <div class="match-card">
-                <div class="match-header">
-                    <span class="tournament-tag">🏆 مباراة ودية تحضيرية للمونديال</span>
-                    <span class="status-badge finished">انتهت</span>
-                </div>
-                
-                <div class="match-row">
-                    <div class="team left">🇪🇬 مصر</div>
-                    <div class="score-box">2</div>
-                    <div class="score-box">1</div>
-                    <div class="team right">تونس 🇹🇳</div>
-                </div>
-
-                <div class="info-row">
-                    <span class="info-label">📺 قنوات البث:</span>
-                    <span class="info-value">أون تايم سبورتس / أبوظبي الرياضية</span>
+                <div class="analysis-box">
+                    <div class="analysis-title">📊 التحليل الفني للمباراة:</div>
+                    <p style="margin: 0; color: var(--text-muted); line-height: 1.5;">
+                        تعتمد المكسيك على عامل الأرض والجمهور في ملعب أزتيكا التاريخي مع ضغط هجومي مكثف من الأطراف، بينما يركز منتخب جنوب إفريقيا على الهجمات المرتدة السريعة وإغلاق المساحات الدفاعية في وسط الملعب.
+                    </p>
                 </div>
             </div>
         </div>
 
-        <!-- [مستودع إعلاني أوسط] -->
         <div class="ad-container" id="ad-slot-middle">
-            📢 مستودع إعلاني مدمج (وسط جداول المباريات)
+            📢 مستودع إعلاني مدمج (أعلى صندوق التعليقات)
         </div>
 
-        <!-- قسم الألعاب -->
-        <div id="gaming-section" class="content-panel">
-            <div class="section-title">مجتمع بطولات الألعاب الرقمية</div>
-            <div class="match-card">
-                <div class="match-header">
-                    <span class="tournament-tag">🎮 بطولة القيمنق الإلكترونية</span>
-                    <span class="status-badge live">لايف الآن</span>
+        <div class="comments-section">
+            <div style="font-weight: bold; margin-bottom: 10px; font-size: 1.1rem;">💬 شاركنا تحليلك وتوقعتك للمباراة:</div>
+            
+            <div class="comment-input-area">
+                <input type="text" id="commentText" class="comment-input" placeholder="اكتب تعليقك أو توقعك هنا...">
+                <button class="comment-submit" onclick="addComment()">نشر</button>
+            </div>
+
+            <div class="comments-list" id="commentsList">
+                <div class="single-comment">
+                    <div class="comment-meta">كابتن جيمر</div>
+                    <div>مباراة صعبة جداً، أتوقع فوز المكسيك 2-1 بسبب حماس الافتتاح والجمهور!</div>
                 </div>
-                <p style="margin: 5px 0; font-weight: bold;">تصفيات بطولة كأس العالم للألعاب الرقمية FC 26</p>
-                <p style="margin: 0; font-size: 0.9rem; color: var(--text-muted);">
-                    تابعوا النتائج المباشرة لتصفيات الجيمرز المتزامنة مع المونديال.
-                </p>
+                <div class="single-comment">
+                    <div class="comment-meta">محلل المونديال</div>
+                    <div>التحليل الفني ممتاز، تقفيل جنوب إفريقيا هو اللي هيحدد شكل المباراة في أول نص ساعة.</div>
+                </div>
             </div>
         </div>
 
     </div>
 
     <script>
-        // العداد التنازلي للمونديال
+        // العداد التنازلي
         const countDownDate = new Date("June 11, 2026 00:00:00").getTime();
         const x = setInterval(function() {
             const now = new Date().getTime();
@@ -334,30 +311,41 @@
             document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
             document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
 
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("timer").innerHTML = "انطلقت البطولة رسمياً! ⚽🏆";
-            }
+            if (distance < 0) { clearInterval(x); document.getElementById("timer").innerHTML = "انطلقت البطولة! ⚽"; }
         }, 1000);
 
-        // نظام التحكم في فلترة الأقسام
+        // وظيفة إضافة تعليق بشكل حي في الصفحة
+        function addComment() {
+            const input = document.getElementById('commentText');
+            const commentValue = input.value.trim();
+            
+            if (commentValue !== "") {
+                const list = document.getElementById('commentsList');
+                
+                // إنشاء هيكل التعليق الجديد
+                const newComment = document.createElement('div');
+                newComment.className = 'single-comment';
+                newComment.innerHTML = `<div class="comment-meta">مستخدم (أنت)</div><div>${commentValue}</div>`;
+                
+                // إضافة التعليق في أعلى القائمة
+                list.insertBefore(newComment, list.firstChild);
+                
+                // تفريغ الخانة بعد النشر
+                input.value = "";
+            }
+        }
+
+        // فلترة الأقسام
         function filterContent(category) {
             const buttons = document.querySelectorAll('.control-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
             event.currentTarget.classList.add('active');
 
             const matchesSec = document.getElementById('matches-section');
-            const gamingSec = document.getElementById('gaming-section');
-
-            if (category === 'all') {
+            if (category === 'matches' || category === 'all') {
                 matchesSec.style.display = 'block';
-                gamingSec.style.display = 'block';
-            } else if (category === 'matches') {
-                matchesSec.style.display = 'block';
-                gamingSec.style.display = 'none';
-            } else if (category === 'gaming') {
+            } else {
                 matchesSec.style.display = 'none';
-                gamingSec.style.display = 'block';
             }
         }
     </script>
