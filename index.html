@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة المونديال والجيمرز 2026</title>
+    <title>منصة المونديال والألعاب الرقمية 2026</title>
     <style>
-        /* التحكم في الألوان والإطارات */
+        /* التحكم في الألوان والإطارات الكلاسيكية */
         :root {
             --bg-color: #ffffff;      
             --text-main: #000000;     
             --text-muted: #555555;    
             --accent-color: #0056b3;  
+            --egypt-red: #d9534f; /* لون مميز لمباريات مصر */
             
             /* التحكم في الإطار */
             --border-width: 2px;      
@@ -45,12 +46,12 @@
             font-weight: 800;
         }
 
-        /* أزرار التحكم والتنقل الشاملة */
+        /* أزرار التحكم والتنقل الشاملة ثابتة أعلى الشاشة */
         .nav-controls {
             display: flex;
             gap: 10px;
             margin-bottom: 20px;
-            position: sticky; /* جعل الأزرار تثبت أعلى الشاشة أثناء التمرير لتسهيل التحكم */
+            position: sticky;
             top: 0;
             background: #ffffff;
             padding: 10px 0;
@@ -65,7 +66,7 @@
             border: var(--border-width) solid var(--border-color);
             border-radius: var(--border-radius);
             padding: 10px 5px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: bold;
             cursor: pointer;
             text-align: center;
@@ -76,7 +77,7 @@
             color: #ffffff;
         }
 
-        /* مستودعات ومساحات الإعلانات */
+        /* مساحات الإعلانات لزيادة الأرباح */
         .ad-container {
             background-color: #f9f9f9;
             border: 1px dashed #777777; 
@@ -89,7 +90,7 @@
             font-weight: bold;
         }
 
-        /* صندوق العداد التنازلي */
+        /* صندوق العداد التنازلي للبطولة */
         .countdown-box {
             background: #000000;
             color: #ffffff;
@@ -118,14 +119,23 @@
             padding-right: 5px;
             border-right: 4px solid var(--accent-color);
         }
+        
+        .section-title.egypt-title {
+            border-right: 4px solid var(--egypt-red);
+        }
 
-        /* بطاقات المحتوى المتنوعة */
+        /* بطاقات المحتوى */
         .match-card {
             background-color: #ffffff;
             border: var(--border-width) solid var(--border-color);
             border-radius: var(--border-radius);
             padding: 15px;
             margin-bottom: 20px;
+        }
+        
+        .match-card.egypt-card {
+            border-color: var(--egypt-red);
+            background-color: #fffdfd;
         }
 
         .match-header {
@@ -146,7 +156,7 @@
             margin: 15px 0;
         }
 
-        .team { width: 40%; }
+        .team { width: 45%; }
         .score-box {
             background: #1a1a1a;
             color: #ffffff;
@@ -174,7 +184,7 @@
         }
         .analysis-title { font-weight: bold; color: var(--accent-color); margin-bottom: 5px; }
 
-        /* قسم التعليقات والنقاشات */
+        /* قسم التعليقات */
         .comments-section {
             border: var(--border-width) solid var(--border-color);
             border-radius: var(--border-radius);
@@ -219,33 +229,37 @@
             font-size: 0.9rem;
         }
         .comment-meta { font-weight: bold; font-size: 0.8rem; margin-bottom: 3px; color: var(--accent-color); }
+        .status-badge { font-weight: bold; font-size: 0.8rem; padding: 2px 6px; border-radius: 4px; }
+        .status-badge.upcoming { background: #e0e0e0; color: #000; }
+        .status-badge.live { background: #d9534f; color: #fff; }
+        .status-badge.egypt-badge { background: #d9534f; color: #fff; }
     </style>
 </head>
 <body>
 
     <div class="container">
         
-        <!-- الهيدر الرئيسي للمنصة -->
+        <!-- الهيدر الرئيسي المحدث -->
         <div class="main-header">
-            <h1>منصة المونديال والجيمرز</h1>
-            <p style="margin: 5px 0 0 0; color: var(--text-muted); font-size: 0.9rem;">كل المواضيع في مكان واحد بالكامل</p>
+            <h1>منصة المونديال والألعاب الرقمية</h1>
+            <p style="margin: 5px 0 0 0; color: var(--text-muted); font-size: 0.9rem;">جدول مباريات مصر وكافة مواجهات كأس العالم 2026</p>
         </div>
 
         <!-- [مستودع إعلاني علوي] -->
         <div class="ad-container" id="ad-slot-top">
-            📢 مستودع إعلاني رئيسي للتطبيق (بانر علوي - 320×50)
+            📢 مستودع إعلاني علوي (بانر رئيسي - 320×50)
         </div>
 
-        <!-- أزرار التحكم الشاملة للجمهور (تتحكم في إظهار وإخفاء كل المواضيع أدناه) -->
+        <!-- أزرار التحكم الشاملة للجمهور -->
         <div class="nav-controls">
             <button class="control-btn active" onclick="filterGlobal('all')">عرض الكل</button>
-            <button class="control-btn" onclick="filterGlobal('matches')">المباريات والتحليل</button>
-            <button class="control-btn" onclick="filterGlobal('gaming')">بطولات الألعاب</button>
-            <button class="control-btn" onclick="filterGlobal('comments')">نقاشات الجمهور</button>
+            <button class="control-btn" onclick="filterGlobal('egypt')">مباريات مصر 🇪🇬</button>
+            <button class="control-btn" onclick="filterGlobal('matches')">باقي المباريات</button>
+            <button class="control-btn" onclick="filterGlobal('gaming')">الألعاب الرقمية</button>
         </div>
 
-        <!-- [موضوع: العداد التنازلي] - يظهر دائماً كمعلومة أساسية -->
-        <div class="countdown-box global-topic" data-category="matches">
+        <!-- العداد التنازلي للبطولة -->
+        <div class="countdown-box global-topic" data-category="egypt matches">
             <div>⏳ المتبقي على انطلاق كأس العالم 2026</div>
             <div class="countdown-timer" id="timer">
                 <div class="time-part"><div id="days">00</div><span>يوم</span></div>
@@ -255,83 +269,135 @@
             </div>
         </div>
 
-        <!-- [موضوع: جدول مباريات المونديال والنتائج والتحليل الفني] -->
-        <div class="global-topic" data-category="matches">
-            <div class="section-title">🏆 جدول مباريات المونديال والتحليلات</div>
+        <!-- [قسم مباريات منتخب مصر - ميزناه بلون أحمر لجذب الانتباه] -->
+        <div class="global-topic" data-category="egypt">
+            <div class="section-title egypt-title">🦅 مباريات منتخب مصر في المونديال</div>
             
-            <div class="match-card">
+            <div class="match-card egypt-card">
                 <div class="match-header">
-                    <span style="font-weight: bold; color: var(--accent-color);">الجولة 1 - مباراة الافتتاح</span>
-                    <span style="background: #e0e0e0; padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">قريباً</span>
+                    <span style="font-weight: bold; color: var(--egypt-red);">🏆 دور المجموعات - الجولة الأولى</span>
+                    <span class="status-badge egypt-badge">مباراة الفراعنة</span>
                 </div>
                 
+                <div class="match-row">
+                    <div class="team" style="text-align: right;">🇪🇬 مصر</div>
+                    <div class="score-box">-</div>
+                    <div class="score-box">-</div>
+                    <div class="team" style="text-align: left;">منافس المجموعة 🏳️</div>
+                </div>
+
+                <div class="info-row">
+                    <span class="info-label">📅 التاريخ:</span>
+                    <span class="info-value">سيتم تحديث اليوم بدقة فور القرعة النهائية</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">⏰ توقيت مصر:</span>
+                    <span class="info-value" style="color: var(--egypt-red); font-weight: bold;">سهرة مسائية (توقيت القاهرة المحلي)</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">📺 البث المباشر:</span>
+                    <span class="info-value">beIN Sports المفتوحة / أون تايم سبورتس (المكتبية)</span>
+                </div>
+
+                <div class="analysis-box">
+                    <div class="analysis-title">📊 توقعات فنية:</div>
+                    <p style="margin: 0; color: var(--text-muted); line-height: 1.5;">
+                        يدخل الفراعنة البطولة بحشد تكتيكي متميز وعينهم على النقاط الثلاث الأولى لتأمين بطاقة التأهل مبكراً من دور المجموعات الموسع.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- [مستودع إعلاني مدمج] -->
+        <div class="ad-container" id="ad-slot-middle">
+            📢 مستودع إعلاني مدمج (أعلى جدول مباريات الافتتاح العالمية)
+        </div>
+
+        <!-- [قسم باقي مباريات كأس العالم] -->
+        <div class="global-topic" data-category="matches">
+            <div class="section-title">🏆 جدول مباريات كأس العالم والافتتاح</div>
+            
+            <!-- مباراة الافتتاح 1 -->
+            <div class="match-card">
+                <div class="match-header">
+                    <span style="font-weight: bold; color: var(--accent-color);">الجولة 1 - الافتتاح الرسمي للبطولة</span>
+                    <span class="status-badge upcoming">قريباً</span>
+                </div>
                 <div class="match-row">
                     <div class="team" style="text-align: right;">🇲🇽 المكسيك</div>
                     <div class="score-box">-</div>
                     <div class="score-box">-</div>
                     <div class="team" style="text-align: left;">جنوب إفريقيا 🇿🇦</div>
                 </div>
-
                 <div class="info-row">
-                    <span class="info-label">📅 التاريخ الصحيح:</span>
+                    <span class="info-label">📅 التاريخ:</span>
                     <span class="info-value">الخميس، 11 يونيو 2026</span>
                 </div>
                 <div class="info-row">
-                    <span class="info-label">📺 القنوات الناقلة:</span>
-                    <span class="info-value">شبكة beIN Sports المفتوحة / وقنوات الكأس</span>
+                    <span class="info-label">⏰ توقيت مصر:</span>
+                    <span class="info-value" style="color: #000; font-weight: bold;">11:00 مساءً (بتوقيت القاهرة)</span>
                 </div>
                 <div class="info-row">
-                    <span class="info-label">📍 مكان الإذاعة:</span>
-                    <span class="info-value">ملعب أزتيكا الدولي - المكسيك</span>
+                    <span class="info-label">📍 الملعب:</span>
+                    <span class="info-value">استاد أزتيكا التاريخي - المكسيك</span>
                 </div>
+            </div>
 
-                <div class="analysis-box">
-                    <div class="analysis-title">📊 التحليل الفني للمباراة:</div>
-                    <p style="margin: 0; color: var(--text-muted); line-height: 1.5;">
-                        تعتمد المكسيك على عامل الأرض والجمهور في ملعب أزتيكا التاريخي مع ضغط هجومي مكثف من الأطراف، بينما يركز منتخب جنوب إفريقيا على الهجمات المرتدة السريعة.
-                    </p>
+            <!-- مباراة الافتتاح 2 -->
+            <div class="match-card">
+                <div class="match-header">
+                    <span style="font-weight: bold; color: var(--accent-color);">الجولة 1 - الافتتاح الثاني</span>
+                    <span class="status-badge upcoming">قريباً</span>
+                </div>
+                <div class="match-row">
+                    <div class="team" style="text-align: right;">🇨🇦 كندا</div>
+                    <div class="score-box">-</div>
+                    <div class="score-box">-</div>
+                    <div class="team" style="text-align: left;">منافس المجموعة B 🏳️</div>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">📅 التاريخ:</span>
+                    <span class="info-value">ليلة الخميس (فجر الجمعة 12 يونيو)</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">⏰ توقيت مصر:</span>
+                    <span class="info-value" style="color: #000; font-weight: bold;">02:00 فجراً (بتوقيت القاهرة)</span>
                 </div>
             </div>
         </div>
 
-        <!-- [مستودع إعلاني مدمج في وسط المحتوى غني النقرات] -->
-        <div class="ad-container" id="ad-slot-middle">
-            📢 مستودع إعلاني مدمج (وسط التغذية الإخبارية للمنصة)
-        </div>
-
-        <!-- [موضوع: مجتمع بطولات الجيمرز والألعاب الرقمية] -->
+        <!-- [قسم الألعاب الرقمية المصاحبة] -->
         <div class="global-topic" data-category="gaming">
-            <div class="section-title">🎮 مجتمع بطولات الألعاب الرقمية</div>
-            
+            <div class="section-title">🎮 بطولات الألعاب الرقمية</div>
             <div class="match-card">
                 <div class="match-header">
-                    <span class="tournament-tag">بطولة القيمنق الإلكترونية المصاحبة للمونديال</span>
-                    <span style="background: #d9534f; color:#fff; padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">لايف الآن</span>
+                    <span style="font-weight: bold; color: var(--accent-color);">بطولة كأس العالم الإلكترونية FC 26</span>
+                    <span class="status-badge live">لايف الآن</span>
                 </div>
-                <p style="margin: 5px 0; font-weight: bold;">تصفيات بطولة كأس العالم للألعاب الرقمية FC 26</p>
+                <p style="margin: 5px 0; font-weight: bold;">تصفيات ومواجهات مباشرة رقمية</p>
                 <p style="margin: 0; font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">
-                    سجل الآن أو تابع البث الحي والنتائج المباشرة لتصفيات الجيمرز المتزامنة مع المونديال الحقيقي. جوائز كبرى بانتظار أبطال المجموعات!
+                    تابعوا وبثوا تحديات الألعاب الرقمية والبطولات التنافسية الكبرى التي تجرى بالتزامن مع فاعليات المونديال.
                 </p>
             </div>
         </div>
 
-        <!-- [موضوع: نقاشات وتعليقات الجمهور الحية] -->
-        <div class="comments-section global-topic" data-category="comments">
+        <!-- [قسم نقاشات وتعليقات الجمهور] -->
+        <div class="comments-section global-topic" data-category="egypt matches gaming">
             <div class="section-title" style="margin-top:0; border:none; padding:0;">💬 نقاشات وتحليلات الجمهور الحية</div>
             
             <div class="comment-input-area">
-                <input type="text" id="commentText" class="comment-input" placeholder="شاركنا تحليلك، رأيك، أو توقعك للمباريات المونديالية الحالية...">
+                <input type="text" id="commentText" class="comment-input" placeholder="شاركنا توقعك لمباريات مصر ومواجهات المونديال الحالية...">
                 <button class="comment-submit" onclick="addComment()">نشر</button>
             </div>
 
             <div class="comments-list" id="commentsList">
                 <div class="single-comment">
-                    <div class="comment-meta">كابتن جيمر</div>
-                    <div>مباراة صعبة جداً، أتوقع فوز المكسيك 2-1 بسبب حماس الافتتاح والجمهور!</div>
+                    <div class="comment-meta">مشجع مصري</div>
+                    <div>كل الدعم لمنتخب مصر في المونديال! التوقيتات ممتازة ومستنيين السهرات الكروية.</div>
                 </div>
                 <div class="single-comment">
-                    <div class="comment-meta">محلل المونديال</div>
-                    <div>التحليل الفني ممتاز، تقفيل جنوب إفريقيا هو اللي هيحدد شكل المباراة في أول نص ساعة.</div>
+                    <div class="comment-meta">محلل رقمي</div>
+                    <div>مباراة الافتتاح الساعة 11 مساءً بتوقيت القاهرة مناسبة جداً للمقاهي والتجمعات في مصر.</div>
                 </div>
             </div>
         </div>
@@ -339,7 +405,7 @@
     </div>
 
     <script>
-        // العداد التنازلي الحي
+        // العداد التنازلي الحي للمونديال (11 يونيو 2026)
         const countDownDate = new Date("June 11, 2026 00:00:00").getTime();
         const x = setInterval(function() {
             const now = new Date().getTime();
@@ -355,7 +421,7 @@
             document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
             document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
 
-            if (distance < 0) { clearInterval(x); document.getElementById("timer").innerHTML = "انطلقت البطولة! ⚽🏆"; }
+            if (distance < 0) { clearInterval(x); document.getElementById("timer").innerHTML = "انطلقت البطولة رسمياً! ⚽🏆"; }
         }, 1000);
 
         // وظيفة إضافة تعليق بشكل حي
@@ -373,24 +439,19 @@
             }
         }
 
-        // نظام الفلترة والتحكم الشامل بكل المواضيع على الصفحة الرئيسية
+        // نظام الفلترة الذكي والشامل لكل مواضيع الصفحة الرئيسية
         function filterGlobal(category) {
-            // تحديث تصميم الأزرار النشطة
             const buttons = document.querySelectorAll('.control-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
             event.currentTarget.classList.add('active');
 
-            // التحكم في إظهار وإخفاء المواضيع بناءً على اختيار المستخدم
             const topics = document.querySelectorAll('.global-topic');
             topics.forEach(topic => {
-                if (category === 'all') {
+                const cats = topic.getAttribute('data-category').split(' ');
+                if (category === 'all' || cats.includes(category)) {
                     topic.style.display = 'block';
                 } else {
-                    if (topic.getAttribute('data-category') === category) {
-                        topic.style.display = 'block';
-                    } else {
-                        topic.style.display = 'none';
-                    }
+                    topic.style.display = 'none';
                 }
             });
         }
