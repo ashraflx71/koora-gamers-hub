@@ -1,21 +1,23 @@
+          
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة المونديال والجيمرز</title>
+    <title>منصة المونديال والجيمرز 2026</title>
     <style>
-        /* من هنا تقدر تتحكم في الألوان والإطارات بسهولة */
+        /* التحكم في الألوان والإطارات */
         :root {
-            --bg-color: #ffffff;      /* الخلفية البيضاء */
-            --text-main: #000000;     /* النص بالأسود */
-            --text-muted: #555555;    /* النص الرمادي الفرعي */
-            --accent-color: #0056b3;  /* اللون الأزرق للمؤشرات */
+            --bg-color: #ffffff;      
+            --text-main: #000000;     
+            --text-muted: #555555;    
+            --accent-color: #0056b3;  
+            --success-color: #28a745; /* لون الأخضر للنتائج */
             
             /* التحكم في الإطار */
-            --border-width: 2px;      /* سمك الإطار */
-            --border-color: #1a1a1a;  /* لون الإطار أسود */
-            --border-radius: 8px;     /* انحناء زوايا الإطار */
+            --border-width: 2px;      
+            --border-color: #1a1a1a;  
+            --border-radius: 8px;     
         }
 
         body {
@@ -45,16 +47,42 @@
             font-weight: 800;
         }
 
-        /* مستودع إعلاني للتطبيق */
-        .ad-slot {
-            background-color: #f9f9f9;
-            border: 1px dashed #777; /* إطار منقط للإعلان */
+        /* أزرار التحكم والتنقل */
+        .nav-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .control-btn {
+            flex: 1;
+            background-color: #ffffff;
+            color: #000000;
+            border: var(--border-width) solid var(--border-color);
             border-radius: var(--border-radius);
-            padding: 10px;
+            padding: 10px 5px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .control-btn.active {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        /* أماكن ومستودعات الإعلانات */
+        .ad-container {
+            background-color: #f9f9f9;
+            border: 1px dashed #777777; 
+            border-radius: var(--border-radius);
+            padding: 12px;
             text-align: center;
             font-size: 0.8rem;
             color: var(--text-muted);
             margin-bottom: 20px;
+            font-weight: bold;
         }
 
         /* صندوق العداد التنازلي */
@@ -91,7 +119,7 @@
             border-right: 4px solid var(--accent-color);
         }
 
-        /* كارت المباراة مع التحكم في الإطار */
+        /* جدول وبطاقات المباريات والنتائج */
         .match-card {
             background-color: #ffffff;
             border: var(--border-width) solid var(--border-color);
@@ -115,7 +143,8 @@
             color: var(--accent-color);
         }
 
-        .match-teams {
+        /* تصميم صف النتيجة والفرق */
+        .match-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -124,12 +153,24 @@
             margin: 15px 0;
         }
 
-        .vs {
-            font-size: 0.9rem;
-            background: #000;
-            color: #fff;
-            padding: 2px 8px;
+        .team {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 40%;
+        }
+        .team.left { justify-content: flex-start; }
+        .team.right { justify-content: flex-end; }
+
+        /* صندوق النتيجة */
+        .score-box {
+            background: #1a1a1a;
+            color: #ffffff;
+            padding: 4px 12px;
             border-radius: 4px;
+            font-size: 1.1rem;
+            min-width: 40px;
+            text-align: center;
         }
 
         .info-row {
@@ -148,25 +189,42 @@
             color: var(--text-muted);
         }
 
-        .live-badge {
-            color: #d9534f;
+        .status-badge {
             font-weight: bold;
+            font-size: 0.8rem;
+            padding: 2px 6px;
+            border-radius: 4px;
         }
+        .status-badge.upcoming { background: #e0e0e0; color: #000; }
+        .status-badge.live { background: #d9534f; color: #fff; animation: blink 1.5s infinite; }
+        .status-badge.finished { background: #28a745; color: #fff; }
+
+        @keyframes blink { 50% { opacity: 0.5; } }
     </style>
 </head>
 <body>
 
     <div class="container">
         
+        <!-- الهيدر -->
         <div class="main-header">
             <h1>منصة المونديال والجيمرز</h1>
-            <p style="margin: 5px 0 0 0; color: var(--text-muted); font-size: 0.9rem;">الكل في مكان واحد</p>
+            <p style="margin: 5px 0 0 0; color: var(--text-muted); font-size: 0.9rem;">جدول المباريات والنتائج المباشرة</p>
         </div>
 
-        <div class="ad-slot" id="top-banner-ad">
-            <span>مساحة إعلانية مخصصة (مستودع التطبيق الإعلاني)</span>
+        <!-- [مستودع إعلاني علوي] -->
+        <div class="ad-container" id="ad-slot-top">
+            📢 مستودع إعلاني علوي (بانر رئيسي - 320×50)
         </div>
 
+        <!-- أزرار التحكم -->
+        <div class="nav-controls">
+            <button class="control-btn active" onclick="filterContent('all')">الكل</button>
+            <button class="control-btn" onclick="filterContent('matches')">جدول المباريات</button>
+            <button class="control-btn" onclick="filterContent('gaming')">الألعاب</button>
+        </div>
+
+        <!-- العداد التنازلي -->
         <div class="countdown-box">
             <div>⏳ المتبقي على انطلاق كأس العالم 2026</div>
             <div class="countdown-timer" id="timer">
@@ -177,46 +235,91 @@
             </div>
         </div>
 
-        <div class="section-title">مباراة الافتتاح والمعلومات الصحيحة</div>
+        <!-- قسم المباريات والنتائج -->
+        <div id="matches-section" class="content-panel">
+            <div class="section-title">جدول مباريات المونديال والنتائج</div>
 
-        <div class="match-card">
-            <div class="match-header">
-                <span class="tournament-tag">🏆 المجموعة الأولى - الجولة 1</span>
-                <span class="live-badge">مباراة الافتتاح</span>
-            </div>
-            
-            <div class="match-teams">
-                <span>المكسيك 🇲🇽</span>
-                <span class="vs">ضد</span>
-                <span>جنوب إفريقيا 🇿🇦</span>
+            <!-- بطاقة مباراة 1 (مباراة الافتتاح) -->
+            <div class="match-card">
+                <div class="match-header">
+                    <span class="tournament-tag">🏆 المجموعة الأولى - الجولة 1</span>
+                    <span class="status-badge upcoming">مباراة قادمة</span>
+                </div>
+                
+                <div class="match-row">
+                    <div class="team left">🇲🇽 المكسيك</div>
+                    <div class="score-box">-</div>
+                    <div class="score-box">-</div>
+                    <div class="team right">جنوب إفريقيا 🇿🇦</div>
+                </div>
+
+                <div class="info-row">
+                    <span class="info-label">📅 التاريخ الصحيح:</span>
+                    <span class="info-value">الخميس، 11 يونيو 2026</span>
+                </div>
+                
+                <div class="info-row">
+                    <span class="info-label">⏰ التوقيت المحلي:</span>
+                    <span class="info-value">التوقيت يضبط تلقائياً حسب جدول الفيفا النهائي</span>
+                </div>
+
+                <div class="info-row">
+                    <span class="info-label">📺 القنوات الناقلة:</span>
+                    <span class="info-value">شبكة beIN Sports المفتوحة / قنوات الكأس</span>
+                </div>
+
+                <div class="info-row">
+                    <span class="info-label">📍 مكان الإذاعة:</span>
+                    <span class="info-value">ملعب أزتيكا الدولي (المكسيك)</span>
+                </div>
             </div>
 
-            <div class="info-row">
-                <span class="info-label">📅 التاريخ الصحيح:</span>
-                <span class="info-value">الخميس، 11 يونيو 2026</span>
-            </div>
-            
-            <div class="info-row">
-                <span class="info-label">⏰ التوقيت الصحيح:</span>
-                <span class="info-value">سيتم ضبطه تلقائياً حسب دولتك فور اعتماده</span>
-            </div>
+            <!-- بطاقة مباراة 2 (مثال لمباراة منتهية أو تجريبية لعرض النتيجة) -->
+            <div class="match-card">
+                <div class="match-header">
+                    <span class="tournament-tag">🏆 مباراة ودية تحضيرية للمونديال</span>
+                    <span class="status-badge finished">انتهت</span>
+                </div>
+                
+                <div class="match-row">
+                    <div class="team left">🇪🇬 مصر</div>
+                    <div class="score-box">2</div>
+                    <div class="score-box">1</div>
+                    <div class="team right">تونس 🇹🇳</div>
+                </div>
 
-            <div class="info-row">
-                <span class="info-label">📺 القنوات الناقلة:</span>
-                <span class="info-value">شبكة beIN Sports المفتوحة / وقنوات الكأس</span>
+                <div class="info-row">
+                    <span class="info-label">📺 قنوات البث:</span>
+                    <span class="info-value">أون تايم سبورتس / أبوظبي الرياضية</span>
+                </div>
             </div>
+        </div>
 
-            <div class="info-row">
-                <span class="info-label">📍 أين تذاع:</span>
-                <span class="info-value">ملعب أزتيكا الدولي (المكسيك)</span>
+        <!-- [مستودع إعلاني أوسط] -->
+        <div class="ad-container" id="ad-slot-middle">
+            📢 مستودع إعلاني مدمج (وسط جداول المباريات)
+        </div>
+
+        <!-- قسم الألعاب -->
+        <div id="gaming-section" class="content-panel">
+            <div class="section-title">مجتمع بطولات الألعاب الرقمية</div>
+            <div class="match-card">
+                <div class="match-header">
+                    <span class="tournament-tag">🎮 بطولة القيمنق الإلكترونية</span>
+                    <span class="status-badge live">لايف الآن</span>
+                </div>
+                <p style="margin: 5px 0; font-weight: bold;">تصفيات بطولة كأس العالم للألعاب الرقمية FC 26</p>
+                <p style="margin: 0; font-size: 0.9rem; color: var(--text-muted);">
+                    تابعوا النتائج المباشرة لتصفيات الجيمرز المتزامنة مع المونديال.
+                </p>
             </div>
         </div>
 
     </div>
 
     <script>
+        // العداد التنازلي للمونديال
         const countDownDate = new Date("June 11, 2026 00:00:00").getTime();
-
         const x = setInterval(function() {
             const now = new Date().getTime();
             const distance = countDownDate - now;
@@ -233,10 +336,30 @@
 
             if (distance < 0) {
                 clearInterval(x);
-                document.getElementById("timer").innerHTML = "انطلقت البطولة الآن! ⚽🏆";
+                document.getElementById("timer").innerHTML = "انطلقت البطولة رسمياً! ⚽🏆";
             }
         }, 1000);
+
+        // نظام التحكم في فلترة الأقسام
+        function filterContent(category) {
+            const buttons = document.querySelectorAll('.control-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            const matchesSec = document.getElementById('matches-section');
+            const gamingSec = document.getElementById('gaming-section');
+
+            if (category === 'all') {
+                matchesSec.style.display = 'block';
+                gamingSec.style.display = 'block';
+            } else if (category === 'matches') {
+                matchesSec.style.display = 'block';
+                gamingSec.style.display = 'none';
+            } else if (category === 'gaming') {
+                matchesSec.style.display = 'none';
+                gamingSec.style.display = 'block';
+            }
+        }
     </script>
 </body>
-          </html>
-          
+</html>
