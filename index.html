@@ -45,11 +45,17 @@
             font-weight: 800;
         }
 
-        /* أزرار التحكم والتنقل */
+        /* أزرار التحكم والتنقل الشاملة */
         .nav-controls {
             display: flex;
             gap: 10px;
             margin-bottom: 20px;
+            position: sticky; /* جعل الأزرار تثبت أعلى الشاشة أثناء التمرير لتسهيل التحكم */
+            top: 0;
+            background: #ffffff;
+            padding: 10px 0;
+            z-index: 100;
+            border-bottom: 1px solid #eeeeee;
         }
 
         .control-btn {
@@ -70,7 +76,7 @@
             color: #ffffff;
         }
 
-        /* مستودعات الإعلانات */
+        /* مستودعات ومساحات الإعلانات */
         .ad-container {
             background-color: #f9f9f9;
             border: 1px dashed #777777; 
@@ -113,7 +119,7 @@
             border-right: 4px solid var(--accent-color);
         }
 
-        /* بطاقة المباراة والنتائج */
+        /* بطاقات المحتوى المتنوعة */
         .match-card {
             background-color: #ffffff;
             border: var(--border-width) solid var(--border-color);
@@ -149,7 +155,16 @@
             font-size: 1.1rem;
         }
 
-        /* قسم التحليلات الفنية */
+        .info-row {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            font-size: 0.95rem;
+        }
+
+        .info-label { font-weight: bold; min-width: 110px; }
+        .info-value { color: var(--text-muted); }
+
         .analysis-box {
             background-color: #fcfcfc;
             border-top: 1px solid #e0e0e0;
@@ -157,19 +172,16 @@
             margin-top: 15px;
             font-size: 0.9rem;
         }
-        .analysis-title {
-            font-weight: bold;
-            color: var(--accent-color);
-            margin-bottom: 5px;
-        }
+        .analysis-title { font-weight: bold; color: var(--accent-color); margin-bottom: 5px; }
 
-        /* قسم التعليقات */
+        /* قسم التعليقات والنقاشات */
         .comments-section {
             border: var(--border-width) solid var(--border-color);
             border-radius: var(--border-radius);
             padding: 15px;
             background: #ffffff;
             margin-top: 20px;
+            margin-bottom: 20px;
         }
         .comment-input-area {
             display: flex;
@@ -194,7 +206,7 @@
             cursor: pointer;
         }
         .comments-list {
-            max-height: 200px;
+            max-height: 180px;
             overflow-y: auto;
             border-top: 1px solid #e0e0e0;
             padding-top: 10px;
@@ -206,34 +218,34 @@
             margin-bottom: 8px;
             font-size: 0.9rem;
         }
-        .comment-meta {
-            font-weight: bold;
-            font-size: 0.8rem;
-            margin-bottom: 3px;
-            color: var(--accent-color);
-        }
+        .comment-meta { font-weight: bold; font-size: 0.8rem; margin-bottom: 3px; color: var(--accent-color); }
     </style>
 </head>
 <body>
 
     <div class="container">
         
+        <!-- الهيدر الرئيسي للمنصة -->
         <div class="main-header">
             <h1>منصة المونديال والجيمرز</h1>
-            <p style="margin: 5px 0 0 0; color: var(--text-muted); font-size: 0.9rem;">التحليلات والنقاشات الحية</p>
+            <p style="margin: 5px 0 0 0; color: var(--text-muted); font-size: 0.9rem;">كل المواضيع في مكان واحد بالكامل</p>
         </div>
 
+        <!-- [مستودع إعلاني علوي] -->
         <div class="ad-container" id="ad-slot-top">
-            📢 مستودع إعلاني علوي (بانر رئيسي - 320×50)
+            📢 مستودع إعلاني رئيسي للتطبيق (بانر علوي - 320×50)
         </div>
 
+        <!-- أزرار التحكم الشاملة للجمهور (تتحكم في إظهار وإخفاء كل المواضيع أدناه) -->
         <div class="nav-controls">
-            <button class="control-btn active" onclick="filterContent('all')">الكل</button>
-            <button class="control-btn" onclick="filterContent('matches')">المباريات</button>
-            <button class="control-btn" onclick="filterContent('gaming')">الألعاب</button>
+            <button class="control-btn active" onclick="filterGlobal('all')">عرض الكل</button>
+            <button class="control-btn" onclick="filterGlobal('matches')">المباريات والتحليل</button>
+            <button class="control-btn" onclick="filterGlobal('gaming')">بطولات الألعاب</button>
+            <button class="control-btn" onclick="filterGlobal('comments')">نقاشات الجمهور</button>
         </div>
 
-        <div class="countdown-box">
+        <!-- [موضوع: العداد التنازلي] - يظهر دائماً كمعلومة أساسية -->
+        <div class="countdown-box global-topic" data-category="matches">
             <div>⏳ المتبقي على انطلاق كأس العالم 2026</div>
             <div class="countdown-timer" id="timer">
                 <div class="time-part"><div id="days">00</div><span>يوم</span></div>
@@ -243,40 +255,72 @@
             </div>
         </div>
 
-        <div id="matches-section" class="content-panel">
-            <div class="section-title">المباراة القادمة والتحليل الفني</div>
-
+        <!-- [موضوع: جدول مباريات المونديال والنتائج والتحليل الفني] -->
+        <div class="global-topic" data-category="matches">
+            <div class="section-title">🏆 جدول مباريات المونديال والتحليلات</div>
+            
             <div class="match-card">
                 <div class="match-header">
-                    <span style="font-weight: bold; color: var(--accent-color);">🏆 افتتاح كأس العالم - الجولة 1</span>
+                    <span style="font-weight: bold; color: var(--accent-color);">الجولة 1 - مباراة الافتتاح</span>
                     <span style="background: #e0e0e0; padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">قريباً</span>
                 </div>
                 
-                <div class="match-row" style="text-align: center;">
+                <div class="match-row">
                     <div class="team" style="text-align: right;">🇲🇽 المكسيك</div>
                     <div class="score-box">-</div>
                     <div class="score-box">-</div>
                     <div class="team" style="text-align: left;">جنوب إفريقيا 🇿🇦</div>
                 </div>
 
+                <div class="info-row">
+                    <span class="info-label">📅 التاريخ الصحيح:</span>
+                    <span class="info-value">الخميس، 11 يونيو 2026</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">📺 القنوات الناقلة:</span>
+                    <span class="info-value">شبكة beIN Sports المفتوحة / وقنوات الكأس</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">📍 مكان الإذاعة:</span>
+                    <span class="info-value">ملعب أزتيكا الدولي - المكسيك</span>
+                </div>
+
                 <div class="analysis-box">
                     <div class="analysis-title">📊 التحليل الفني للمباراة:</div>
                     <p style="margin: 0; color: var(--text-muted); line-height: 1.5;">
-                        تعتمد المكسيك على عامل الأرض والجمهور في ملعب أزتيكا التاريخي مع ضغط هجومي مكثف من الأطراف، بينما يركز منتخب جنوب إفريقيا على الهجمات المرتدة السريعة وإغلاق المساحات الدفاعية في وسط الملعب.
+                        تعتمد المكسيك على عامل الأرض والجمهور في ملعب أزتيكا التاريخي مع ضغط هجومي مكثف من الأطراف، بينما يركز منتخب جنوب إفريقيا على الهجمات المرتدة السريعة.
                     </p>
                 </div>
             </div>
         </div>
 
+        <!-- [مستودع إعلاني مدمج في وسط المحتوى غني النقرات] -->
         <div class="ad-container" id="ad-slot-middle">
-            📢 مستودع إعلاني مدمج (أعلى صندوق التعليقات)
+            📢 مستودع إعلاني مدمج (وسط التغذية الإخبارية للمنصة)
         </div>
 
-        <div class="comments-section">
-            <div style="font-weight: bold; margin-bottom: 10px; font-size: 1.1rem;">💬 شاركنا تحليلك وتوقعتك للمباراة:</div>
+        <!-- [موضوع: مجتمع بطولات الجيمرز والألعاب الرقمية] -->
+        <div class="global-topic" data-category="gaming">
+            <div class="section-title">🎮 مجتمع بطولات الألعاب الرقمية</div>
+            
+            <div class="match-card">
+                <div class="match-header">
+                    <span class="tournament-tag">بطولة القيمنق الإلكترونية المصاحبة للمونديال</span>
+                    <span style="background: #d9534f; color:#fff; padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">لايف الآن</span>
+                </div>
+                <p style="margin: 5px 0; font-weight: bold;">تصفيات بطولة كأس العالم للألعاب الرقمية FC 26</p>
+                <p style="margin: 0; font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">
+                    سجل الآن أو تابع البث الحي والنتائج المباشرة لتصفيات الجيمرز المتزامنة مع المونديال الحقيقي. جوائز كبرى بانتظار أبطال المجموعات!
+                </p>
+            </div>
+        </div>
+
+        <!-- [موضوع: نقاشات وتعليقات الجمهور الحية] -->
+        <div class="comments-section global-topic" data-category="comments">
+            <div class="section-title" style="margin-top:0; border:none; padding:0;">💬 نقاشات وتحليلات الجمهور الحية</div>
             
             <div class="comment-input-area">
-                <input type="text" id="commentText" class="comment-input" placeholder="اكتب تعليقك أو توقعك هنا...">
+                <input type="text" id="commentText" class="comment-input" placeholder="شاركنا تحليلك، رأيك، أو توقعك للمباريات المونديالية الحالية...">
                 <button class="comment-submit" onclick="addComment()">نشر</button>
             </div>
 
@@ -295,7 +339,7 @@
     </div>
 
     <script>
-        // العداد التنازلي
+        // العداد التنازلي الحي
         const countDownDate = new Date("June 11, 2026 00:00:00").getTime();
         const x = setInterval(function() {
             const now = new Date().getTime();
@@ -311,43 +355,46 @@
             document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
             document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
 
-            if (distance < 0) { clearInterval(x); document.getElementById("timer").innerHTML = "انطلقت البطولة! ⚽"; }
+            if (distance < 0) { clearInterval(x); document.getElementById("timer").innerHTML = "انطلقت البطولة! ⚽🏆"; }
         }, 1000);
 
-        // وظيفة إضافة تعليق بشكل حي في الصفحة
+        // وظيفة إضافة تعليق بشكل حي
         function addComment() {
             const input = document.getElementById('commentText');
             const commentValue = input.value.trim();
             
             if (commentValue !== "") {
                 const list = document.getElementById('commentsList');
-                
-                // إنشاء هيكل التعليق الجديد
                 const newComment = document.createElement('div');
                 newComment.className = 'single-comment';
                 newComment.innerHTML = `<div class="comment-meta">مستخدم (أنت)</div><div>${commentValue}</div>`;
-                
-                // إضافة التعليق في أعلى القائمة
                 list.insertBefore(newComment, list.firstChild);
-                
-                // تفريغ الخانة بعد النشر
                 input.value = "";
             }
         }
 
-        // فلترة الأقسام
-        function filterContent(category) {
+        // نظام الفلترة والتحكم الشامل بكل المواضيع على الصفحة الرئيسية
+        function filterGlobal(category) {
+            // تحديث تصميم الأزرار النشطة
             const buttons = document.querySelectorAll('.control-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
             event.currentTarget.classList.add('active');
 
-            const matchesSec = document.getElementById('matches-section');
-            if (category === 'matches' || category === 'all') {
-                matchesSec.style.display = 'block';
-            } else {
-                matchesSec.style.display = 'none';
-            }
+            // التحكم في إظهار وإخفاء المواضيع بناءً على اختيار المستخدم
+            const topics = document.querySelectorAll('.global-topic');
+            topics.forEach(topic => {
+                if (category === 'all') {
+                    topic.style.display = 'block';
+                } else {
+                    if (topic.getAttribute('data-category') === category) {
+                        topic.style.display = 'block';
+                    } else {
+                        topic.style.display = 'none';
+                    }
+                }
+            });
         }
     </script>
 </body>
-</html>
+    </html>
+    
