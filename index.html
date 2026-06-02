@@ -136,7 +136,21 @@
             border-top: 1px solid #161922;
         }
     </style>
-</head>
+</<!-- ربط الـ Manifest -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#00ff66">
+
+<!-- تسجيل الـ Service Worker -->
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('./sw.js')
+                .then(reg => console.log('Service Worker Registered!', reg))
+                .catch(err => console.log('Service Worker Failed!', err));
+        });
+    }
+</script>
+    head>
 <body>
 
     <header>
