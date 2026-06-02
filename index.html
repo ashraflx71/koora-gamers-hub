@@ -1,177 +1,43 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Koora Gamers Hub</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
-
-    <style>
-        /* إعادة تعيين الأنماط الأساسية */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
-        }
-
-        /* الثيم الملكي النيون - Royal Neon */
-        body {
-            background-color: #0d0e12; /* أسود عميق مائل للأزرق */
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-        }
-
-        /* الهيدر (Header) */
-        header {
-            background: linear-gradient(145deg, #14161d, #0d0e12);
-            padding: 15px 20px;
-            border-bottom: 2px solid #00ff66; /* نيون أخضر فسفوري */
-            box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            font-size: 22px;
-            font-weight: 900;
-            color: #ffffff;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .logo span {
-            color: #00e5ff; /* نيون أزرق */
-            text-shadow: 0 0 8px #00e5ff;
-        }
-
-        /* حاوية المحتوى الرئيسي */
-        main {
-            flex: 1;
-            padding: 20px;
-            max-width: 800px;
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        /* كارت الترحيب البطل (Hero Section) */
-        .hero-card {
-            background: #161922;
-            border: 1px solid rgba(0, 229, 255, 0.2);
-            border-radius: 12px;
-            padding: 25px;
-            text-align: center;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: #00ff66;
-        }
-
-        .hero-card h1 {
-            font-size: 24px;
-            color: #ffffff;
-            margin-bottom: 10px;
-        }
-
-        .hero-card p {
-            color: #b3b9c9;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        /* قسم حالتنا الافتراضية للمحتوى القادم */
-        .section-title {
-            font-size: 18px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #00e5ff;
-        }
-
-        .section-title::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(to left, rgba(0, 229, 255, 0.5), transparent);
-        }
-
-        .placeholder-content {
-            background: #11131a;
-            border: 1px dashed #242936;
-            border-radius: 8px;
-            padding: 40px 20px;
-            text-align: center;
-            color: #626b7f;
-            font-size: 14px;
-        }
-
-        /* الفوتر (Footer) */
-        footer {
-            background: #090a0d;
-            padding: 15px;
-            text-align: center;
-            font-size: 12px;
-            color: #4f5666;
-            border-top: 1px solid #161922;
-        }
-    </style>
-</<!-- ربط الـ Manifest -->
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#00ff66">
-
-<!-- تسجيل الـ Service Worker -->
-<script>
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('./sw.js')
-                .then(reg => console.log('Service Worker Registered!', reg))
-                .catch(err => console.log('Service Worker Failed!', err));
-        });
-    }
-</script>
-    head>
-<body>
-
-    <header>
-        <div class="logo">Koora<span>Gamers</span></div>
-    </header>
-
     <main>
         <section class="hero-card">
-            <h1>مرحباً بك في المحطة الأولى 🎮</h1>
-            <p>هنا نبني مجتمع محترفي ألعاب كرة القدم الرقمية. كود نظيف، أداء فائق السرعة، وتحكم كامل بدون قيود.</p>
+            <h1>مرحباً بك في Koora Gamers Hub 🎮</h1>
+            <p>منصتك السريعة لمتابعة بطولات ومراجعات ألعاب كرة القدم الرقمية. أداء فائق واستهلاك ذكي للبيانات.</p>
         </section>
 
-        <h2 class="section-title">الأقسام والبطولات</h2>
-        <div class="placeholder-content">
-            الخطوة القادمة: إضافة هيكل الأقسام الذكي وجداول المباريات التفاعلية.
+        <div class="tabs-container">
+            <button class="tab-btn active" onclick="switchTab('tournaments')">🏆 البطولات</button>
+            <button class="tab-btn" onclick="switchTab('reviews')">🎮 مراجعات وأخبار</button>
+            <button class="tab-btn" onclick="switchTab('tactics')">📋 خطط وتكتيكات</button>
+        </div>
+
+        <div id="tournaments" class="tab-content active">
+            <div class="game-card">
+                <div class="card-status status-live">مباشر الآن</div>
+                <h3>بطولة KooraGamers الأولى لـ EA FC 26</h3>
+                <p>المرحلة الإقصائية - المواجهات مشتعلة بين أفضل 16 لاعب في الوطن العربي.</p>
+                <div class="card-meta">الجائزة: 50$ للمركز الأول</div>
+            </div>
+            <div class="game-card">
+                <div class="card-status status-upcoming">قريباً</div>
+                <h3>بطولة eFootball الصيفية للموبايل</h3>
+                <p>التسجيل يفتح الأسبوع القادم. جهز فريقك وكن مستعداً للمنافسة.</p>
+                <div class="card-meta">منصة اللعب: Android / iOS</div>
+            </div>
+        </div>
+
+        <div id="reviews" class="tab-content">
+            <div class="game-card">
+                <h3>تحديث المودم الجديد في EA FC 26</h3>
+                <p>تحليل كامل لأسلوب اللعب بعد التحديث الأخير وتأثيره على سرعة المهاجمين وإنهاء الهجمات.</p>
+                <div class="card-meta">تاريخ النشر: اليوم</div>
+            </div>
+        </div>
+
+        <div id="tactics" class="tab-content">
+            <div class="game-card">
+                <h3>خطة 4-3-2-1 الشجرة: كيف تهيمن على وسط الملعب؟</h3>
+                <p>شرح مخصص للتكتيك المتقدم والتعليمات السرية للاعبين لضمان تقفيل المساحات والارتداد السريع.</p>
+                <div class="card-meta">مستوى التكتيك: احترافي</div>
+            </div>
         </div>
     </main>
-
-    <footer>
-        &copy; 2026 Koora Gamers Hub. تم التطوير بكل شغف.
-    </footer>
-
-</body>
-</html>
