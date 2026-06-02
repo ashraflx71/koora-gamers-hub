@@ -3,344 +3,349 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Koora Gamers Hub | مجتمع محترفي ألعاب الكرة</title>
+    <title>Koora Gamers Hub | مركز كورة جيمرز</title>
+    <meta name="description" content="المنصة الاحترافية الأولى لبطولات وأخبار كرة القدم الإلكترونية والألعاب.">
     
-    <meta name="description" content="مرجعك الأول لبطولات ألعاب كرة القدم الرقمية، مراجعات EA FC 26، وتكتيكات المحترفين لـ eFootball وألعاب الجيمرز.">
-    <meta name="keywords" content="كورة جيمرز, EA FC 26, eFootball, بطولات فيفا, تكتيكات فيفا, ألعاب كرة قدم, Koora Gamers Hub">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://ashraflx71.github.io/koora-gamers-hub/">
-
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Koora Gamers Hub | مجتمع محترفي ألعاب الكرة">
-    <meta property="og:description" content="اشترك في أقوى البطولات وتابع أحدث مراجعات وخطط ألعاب كرة القدم الرقمية بأداء فائق السيرة.">
-    <meta property="og:image" content="https://img.icons8.com/neon/512/00FF66/sports-mode.png">
-    <meta property="og:url" content="https://ashraflx71.github.io/koora-gamers-hub/">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Koora Gamers Hub">
-    <meta name="twitter:description" content="مرجعك الأول لبطولات وأخبار ألعاب كرة القدم الرقمية.">
-    <meta name="twitter:image" content="https://img.icons8.com/neon/512/00FF66/sports-mode.png">
-
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#00ff66">
-
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 
     <style>
-        /* إعادة تعيين الأنماط الأساسية لسرعة التحميل وتوفير الطاقة */
+        /* --- Royal Neon Green CSS Variables --- */
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #121212;
+            --neon-green: #39ff14;
+            --neon-blue: #00f3ff;
+            --text-light: #f5f5f5;
+            --text-muted: #aaaaaa;
+            --gold: #ffd700;
+        }
+
+        /* --- Global Resets & Typography --- */
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
             font-family: 'Cairo', sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        /* الثيم الملكي النيون الخارق - Royal Neon */
         body {
-            background-color: #0d0e12; /* أسود عميق مائل للأزرق النيوني */
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
             overflow-x: hidden;
+            padding-bottom: 60px; /* لراحة التصفح باليد الواحدة */
         }
 
-        /* الهيدر (Header) */
+        /* --- Header & Brand Style --- */
         header {
-            background: linear-gradient(145deg, #14161d, #0d0e12);
-            padding: 15px 20px;
-            border-bottom: 2px solid #00ff66; /* نيون أخضر فسفوري */
-            box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: linear-gradient(180deg, rgba(18, 18, 18, 0.95) 0%, rgba(10, 10, 10, 0.8) 100%);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            text-align: center;
+            border-bottom: 2px solid var(--neon-green);
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
         .logo {
-            font-size: 22px;
+            font-size: 1.5rem;
             font-weight: 900;
-            color: #ffffff;
-            text-transform: uppercase;
             letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
-        .logo span {
-            color: #00e5ff; /* نيون أزرق كريستالي */
-            text-shadow: 0 0 8px #00e5ff;
-        }
+        .logo span.koora { color: var(--text-light); text-shadow: 0 0 5px var(--neon-green); }
+        .logo span.gamers { color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green); }
+        .logo span.hub { color: var(--neon-blue); text-shadow: 0 0 10px var(--neon-blue); }
 
-        /* حاوية المحتوى الرئيسي */
-        main {
-            flex: 1;
-            padding: 20px;
-            max-width: 800px;
-            width: 100%;
+        /* --- Container --- */
+        .container {
+            max-width: 600px; /* مخصص ومحكم تماماً لشاشات الهواتف */
             margin: 0 auto;
+            padding: 15px;
         }
 
-        /* كارت الترحيب البطل (Hero Section) */
-        .hero-card {
-            background: #161922;
-            border: 1px solid rgba(0, 229, 255, 0.2);
-            border-radius: 12px;
-            padding: 25px;
-            text-align: center;
+        /* --- Section Styling --- */
+        section {
             margin-bottom: 25px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        h2.section-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-light);
+            border-right: 4px solid var(--neon-blue);
+            padding-right: 8px;
+        }
+
+        /* --- Live Matches Grid (Green Code Optimized) --- */
+        .match-card {
+            background: var(--bg-card);
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             position: relative;
+            transition: transform 0.2s;
+        }
+
+        .match-card:active {
+            transform: scale(0.98); /* تأثير لمس ممتاز للهواتف */
+        }
+
+        .team {
+            flex: 1;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .score-box {
+            background: #1a1a1a;
+            padding: 5px 15px;
+            border-radius: 20px;
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            font-weight: 900;
+            font-size: 1.1rem;
+            min-width: 70px;
+            text-align: center;
+            box-shadow: 0 0 8px rgba(57, 255, 20, 0.1);
+        }
+
+        .live-badge {
+            position: absolute;
+            top: -6px;
+            left: 15px;
+            background: red;
+            color: white;
+            font-size: 0.7rem;
+            padding: 1px 8px;
+            border-radius: 10px;
+            font-weight: bold;
+            animation: blink 1.5s infinite;
+        }
+
+        /* --- SEO Friendly Articles (Cards) --- */
+        .article-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #222;
+            margin-bottom: 15px;
+        }
+
+        .article-img-placeholder {
+            width: 100%;
+            height: 140px;
+            background: linear-gradient(45deg, #111, #1e251c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-bottom: 1px solid #222;
+        }
+
+        .article-content {
+            padding: 15px;
+        }
+
+        .article-content h3 {
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+            color: var(--text-light);
+        }
+
+        .article-content h3:hover {
+            color: var(--neon-blue);
+        }
+
+        .article-content p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            height: 40px;
             overflow: hidden;
         }
 
-        .hero-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: #00ff66;
+        /* --- Neon Form Design --- */
+        .hub-form {
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #222;
         }
 
-        .hero-card h1 {
-            font-size: 24px;
-            color: #ffffff;
-            margin-bottom: 10px;
-        }
-
-        .hero-card p {
-            color: #b3b9c9;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        /* حاوية أزرار الأقسام التفاعلية السلسة (Tabs) */
-        .tabs-container {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            overflow-x: auto; /* تمرير سلس مرن على شاشات اللمس للموبايل */
-            padding-bottom: 8px;
-        }
-
-        /* تخصيص شريط التمرير للأزرار ليكون مخفياً وجميلاً */
-        .tabs-container::-webkit-scrollbar {
-            height: 3px;
-        }
-        .tabs-container::-webkit-scrollbar-thumb {
-            background: #242936;
-            border-radius: 10px;
-        }
-
-        .tab-btn {
-            background: #11131a;
-            border: 1px solid #242936;
-            color: #b3b9c9;
-            padding: 10px 18px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 700;
-            white-space: nowrap;
-            transition: all 0.2s ease;
-            outline: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .tab-btn.active {
-            background: rgba(0, 255, 102, 0.1);
-            border-color: #00ff66;
-            color: #00ff66;
-            text-shadow: 0 0 5px rgba(0, 255, 102, 0.5);
-        }
-
-        /* التحكم في التبديل السريع للمحتوى */
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-            animation: fadeIn 0.3s ease-in-out;
-        }
-
-        /* كروت الجيمنج (Gaming Cards) */
-        .game-card {
-            background: #14161d;
-            border: 1px solid #1f232e;
-            border-radius: 10px;
-            padding: 18px;
+        .form-group {
             margin-bottom: 15px;
-            position: relative;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            transition: border-color 0.2s ease;
         }
 
-        .game-card:hover {
-            border-color: #00e5ff;
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            color: var(--text-muted);
         }
 
-        .game-card h3 {
-            font-size: 16px;
-            color: #ffffff;
-            margin-bottom: 8px;
-            padding-left: 75px; /* يمنع التداخل مع شارات الحالة اليسرى */
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            background: #151515;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: white;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
         }
 
-        .game-card p {
-            font-size: 13px;
-            color: #949eb4;
-            line-height: 1.5;
-            margin-bottom: 12px;
+        .form-control:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 8px rgba(0, 243, 255, 0.2);
         }
 
-        .card-meta {
-            font-size: 11px;
-            color: #00e5ff;
-            font-weight: bold;
-        }
-
-        /* شارات حالة البطولات (Status Badges) */
-        .card-status {
-            position: absolute;
-            left: 15px;
-            top: 18px;
-            font-size: 11px;
-            padding: 3px 8px;
-            border-radius: 4px;
+        .btn-neon {
+            width: 100%;
+            padding: 14px;
+            background: transparent;
+            border: 2px solid var(--neon-green);
+            color: var(--neon-green);
+            font-size: 1rem;
             font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(57, 255, 20, 0.1);
+            transition: all 0.3s;
         }
 
-        .status-live {
-            background: rgba(255, 0, 85, 0.1);
-            color: #ff0055;
-            border: 1px solid #ff0055;
+        .btn-neon:active {
+            background: var(--neon-green);
+            color: var(--bg-dark);
+            box-shadow: 0 0 20px var(--neon-green);
         }
 
-        .status-upcoming {
-            background: rgba(0, 229, 255, 0.1);
-            color: #00e5ff;
-            border: 1px solid #00e5ff;
-        }
-
-        /* أنيميشن ناعم لتأثير التنقل */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* الفوتر (Footer) */
+        /* --- Footer --- */
         footer {
-            background: #090a0d;
-            padding: 15px;
             text-align: center;
-            font-size: 12px;
-            color: #4f5666;
-            border-top: 1px solid #161922;
-            margin-top: auto;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid #1a1a1a;
+        }
+
+        /* --- Animations --- */
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Header -->
     <header>
-        <div class="logo">Koora<span>Gamers</span></div>
+        <div class="logo">
+            <span class="koora">KOORA</span>
+            <span class="gamers">GAMERS</span>
+            <span class="hub">HUB</span>
+        </div>
     </header>
 
-    <main>
-        <section class="hero-card">
-            <h1>مرحباً بك في Koora Gamers Hub 🎮</h1>
-            <p>منصتك السريعة والمستقلة لمتابعة بطولات ومراجعات ألعاب كرة القدم الرقمية. أداء فائق، كود نظيف، وبدون إعلانات مزعجة.</p>
+    <div class="container">
+        
+        <!-- Live Tournaments Section -->
+        <section>
+            <h2 class="section-title">🎮 مباريات البطولة الحالية</h2>
+            
+            <div class="match-card">
+                <span class="live-badge">مباشر</span>
+                <div class="team">أحمد صلاح</div>
+                <div class="score-box">2 - 1</div>
+                <div class="team">كابتن ميجو</div>
+            </div>
+
+            <div class="match-card">
+                <div class="team">سيكو_99</div>
+                <div class="score-box">0 - 0</div>
+                <div class="team">ألترا جيمر</div>
+            </div>
         </section>
 
-        <div class="tabs-container">
-            <button class="tab-btn active" onclick="switchTab('tournaments')">🏆 البطولات</button>
-            <button class="tab-btn" onclick="switchTab('reviews')">🎮 مراجعات وأخبار</button>
-            <button class="tab-btn" onclick="switchTab('tactics')">📋 خطط وتكتيكات</button>
-        </div>
+        <!-- SEO News Section -->
+        <section>
+            <h2 class="section-title">🔥 أحدث المقالات والأخبار</h2>
+            
+            <div class="article-card">
+                <div class="article-img-placeholder">EA Sports FC 2026 - تكتيكات الفوز</div>
+                <div class="article-content">
+                    <h3>أفضل التشكيلات الهجومية في تحديث كورة 2026</h3>
+                    <p>اكتشف السر وراء تكتيكات المحترفين لضمان الفوز في بطولات الـ Hub القادمة...</p>
+                </div>
+            </div>
+        </section>
 
-        <div id="tournaments" class="tab-content active">
-            <p style="color:#626b7f; text-align:center; padding:20px;">جاري تحميل البطولات الحديثة...</p>
-        </div>
+        <!-- Join / Registration Section -->
+        <section>
+            <h2 class="section-title">⚡ سجل في التحدي القادم</h2>
+            <form class="hub-form" id="joinForm" onsubmit="handleRegistration(event)">
+                <div class="form-group">
+                    <label for="gamerTag">اسم اللاعب (GamerTag)</label>
+                    <input type="text" id="gamerTag" class="form-control" placeholder="مثال: Ashraf_Pro" required>
+                </div>
+                <div class="form-group">
+                    <label for="gameSelect">اختر اللعبة</label>
+                    <select id="gameSelect" class="form-control">
+                        <option value="fc26">EA Sports FC 26</option>
+                        <option value="efootball">eFootball 2026</option>
+                        <option value="fifa">FIFA Classic</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-neon">إرسال طلب الانضمام</button>
+            </form>
+        </section>
 
-        <div id="reviews" class="tab-content">
-            <p style="color:#626b7f; text-align:center; padding:20px;">جاري تحميل المراجعات والأخبار...</p>
-        </div>
+    </div>
 
-        <div id="tactics" class="tab-content">
-            <p style="color:#626b7f; text-align:center; padding:20px;">جاري تحميل الخطط والتكتيكات...</p>
-        </div>
-    </main>
-
+    <!-- Footer -->
     <footer>
-        &copy; 2026 Koora Gamers Hub. تم التطوير كـ PWA فائق الأداء والسرعة.
+        <p>&copy; 2026 Koora Gamers Hub. تم التطوير بـ Green Code للهواتف الذكية.</p>
     </footer>
 
+    <!-- Light Vanilla JavaScript -->
     <script>
-        // 1. تسجيل الـ Service Worker لتفعيل وضع الـ Offline (بدون إنترنت)
+        function handleRegistration(event) {
+            event.preventDefault();
+            const gamerTag = document.getElementById('gamerTag').value;
+            const game = document.getElementById('gameSelect').value;
+            
+            alert(`تم استلام طلبك يا كابتن ${gamerTag}! انتظر كود تأكيد المعاملة قريباً لدخول البطولة.`);
+            document.getElementById('joinForm').reset();
+        }
+
+        // تحضير أولي لـ Service Worker لجعل الموقع يعمل PWA بدون إنترنت
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                    .then(reg => console.log('PWA Service Worker النشط جاهز للعمل مسبقاً!'))
-                    .catch(err => console.log('خطأ في تسجيل Service Worker:', err));
+                console.log('جاهز لتسجيل الـ Service Worker لرفع الأداء!');
             });
         }
-
-        // 2. دالة التبديل السلس السريع والذكي بين التبويبات
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            
-            document.getElementById(tabId).classList.add('active');
-            event.currentTarget.classList.add('active');
-        }
-
-        // 3. جلب البيانات من ملف data.json وحقنها ديناميكياً في الـ DOM
-        async function loadContent() {
-            try {
-                const response = await fetch('./data.json');
-                const data = await response.json();
-                
-                const tournamentsContainer = document.getElementById('tournaments');
-                const reviewsContainer = document.getElementById('reviews');
-                const tacticsContainer = document.getElementById('tactics');
-                
-                // تفريغ عبارات التحميل المؤقتة
-                tournamentsContainer.innerHTML = '';
-                reviewsContainer.innerHTML = '';
-                tacticsContainer.innerHTML = '';
-                
-                // دالة توليد هيكل كروت الـ HTML بكفاءة
-                function createCardHTML(item) {
-                    const statusHTML = (item.status && item.status !== 'none') 
-                        ? `<div class="card-status status-${item.status}">${item.statusText}</div>` 
-                        : '';
-                    return `
-                        <div class="game-card">
-                            ${statusHTML}
-                            <h3>${item.title}</h3>
-                            <p>${item.desc}</p>
-                            <div class="card-meta">${item.meta}</div>
-                        </div>
-                    `;
-                }
-
-                // توزيع البيانات المجلوبة على الحاويات المخصصة لها
-                if(data.tournaments) data.tournaments.forEach(item => tournamentsContainer.innerHTML += createCardHTML(item));
-                if(data.reviews) data.reviews.forEach(item => reviewsContainer.innerHTML += createCardHTML(item));
-                if(data.tactics) data.tactics.forEach(item => tacticsContainer.innerHTML += createCardHTML(item));
-
-            } catch (error) {
-                console.error('فشل جلب البيانات الديناميكية، يرجى التأكد من وجود ملف data.json:', error);
-            }
-        }
-
-        // إطلاق دالة الجلب فور جاهزية مستندات الـ DOM
-        window.addEventListener('DOMContentLoaded', loadContent);
     </script>
 </body>
 </html>
